@@ -23,9 +23,7 @@ public class PlayerMovementScript : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
-    float hp = 100;
-    
-    bool bleeding = false;
+    bool crouching = false;
 
     private void Start()
     {
@@ -44,8 +42,15 @@ public class PlayerMovementScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            currentSpeed = speed * 2;
+            currentSpeed = speed * 1.58f;
         }
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            currentSpeed = speed * 0.58f;
+            controller.height = .7f;
+        }
+        else { controller.height = 2; }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
