@@ -17,6 +17,6 @@ public class Interact : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 0;
 
-        uihandler.displayMessage(npc.dialogs[0], npc.name, 0);
+        uihandler.displayMessage(npc.dialogs[0], npc.name, npc.responses[0], npc.HandleClick, npc, 1);
     }
 }
