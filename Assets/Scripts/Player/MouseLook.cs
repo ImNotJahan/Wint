@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System.Text;
 
 public class MouseLook : MonoBehaviour
 {
@@ -7,7 +9,11 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity = 100;
     public Transform playerBody;
 
+    public string defaultStatus;
+
     private float xRotation = 0f;
+
+    public GameObject status;
 
     private void Start()
     {
@@ -37,6 +43,27 @@ public class MouseLook : MonoBehaviour
             {
                 transform.GetComponent<Interact>().ProcessInteract(hit.transform);
             }
+        } else if (Input.GetKeyUp(KeyCode.V))
+        {
+            if (!status.activeSelf)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                Time.timeScale = 0;
+
+                StringBuilder statusString = new StringBuilder("", 100);
+                statusString.AppendFormat(defaultStatus, PlayerData.strength, PlayerData.endurance,
+                    PlayerData.dexterity, PlayerData.agility, PlayerData.magic);
+
+                status.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = statusString.ToString().Replace("\\n", "\n");
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                Time.timeScale = 1;
+            }
+            status.SetActive(!status.activeSelf);
         }
     }
 
