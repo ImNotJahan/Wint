@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-
-public class PlayerData : ScriptableObject
+﻿public class PlayerData
 {
+    public static string name = "";
+
     public static int strength = 0;
     public static int endurance = 0;
     public static int dexterity = 0;

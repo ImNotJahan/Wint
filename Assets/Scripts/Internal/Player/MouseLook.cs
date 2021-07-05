@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Text;
 
+[RequireComponent(typeof(Interact))]
 public class MouseLook : MonoBehaviour
 {
     [Range(50f, 1000f)]

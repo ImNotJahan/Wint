@@ -69,7 +69,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 0
-    value: 0
+    value: 11.1
   tint:
     overrideState: 0
     value: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: 30
+    value: 30.12
   brightness:
     overrideState: 0
     value: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
     value: 0
   contrast:
     overrideState: 1
-    value: -58
+    value: -4.7
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -1345,7 +1345,7 @@ MonoBehaviour:
     value: 1
   filtering:
     overrideState: 1
-    value: {x: 27.209303, y: 99}
+    value: {x: 35.186047, y: 99}
   minLuminance:
     overrideState: 1
     value: -6
@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
   m_Name: MotionBlur
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
