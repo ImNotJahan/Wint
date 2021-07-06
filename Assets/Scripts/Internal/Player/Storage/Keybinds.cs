@@ -18,6 +18,7 @@ namespace IniFiles
         public static string right = "d";
         public static string crouch = "left ctrl";
         public static string sprint = "left shift";
+        public static string jump = "space";
 
         //Attacking
         public static string focus = "f";
@@ -28,7 +29,6 @@ namespace IniFiles
         public static void LoadKeybinds()
         {
             Ini keybinds = new Ini(directorypath + "Keybinds.ini");
-            Debug.Log(keybinds.KeyExists("Forward", "Movement"));
             if (!keybinds.KeyExists("Forward", "Movement"))
             {
                 SaveKeybinds();
@@ -41,6 +41,7 @@ namespace IniFiles
                 right = keybinds.Read("Right", "Movement");
                 crouch = keybinds.Read("Crouch", "Movement");
                 sprint = keybinds.Read("Sprint", "Movement");
+                sprint = keybinds.Read("Jump", "Movement");
 
                 focus = keybinds.Read("Focus", "Attacking");
                 style = keybinds.Read("Style", "Attacking");
@@ -61,6 +62,7 @@ namespace IniFiles
             keybinds.Write("Right", right, "Movement");
             keybinds.Write("Crouch", crouch, "Movement");
             keybinds.Write("Sprint", sprint, "Movement");
+            keybinds.Write("Jump", jump, "Movement");
 
             keybinds.Write("Focus", focus, "Attacking");
             keybinds.Write("Style", style, "Attacking");

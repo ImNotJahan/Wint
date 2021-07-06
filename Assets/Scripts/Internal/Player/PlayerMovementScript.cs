@@ -52,10 +52,26 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else { controller.height = 2; }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = 0;
+        float z = 0;
 
-        if (Input.GetButtonDown("Jump") && isGrounded && Time.timeScale != 0.5f)
+        if (Input.GetKey(IniFiles.Keybinds.forward))
+        {
+            z = 1;
+        } else if (Input.GetKey(IniFiles.Keybinds.backward))
+        {
+            z = -1;
+        }
+
+        if (Input.GetKey(IniFiles.Keybinds.right))
+        {
+            x = 1;
+        } else if (Input.GetKey(IniFiles.Keybinds.left))
+        {
+            x = -1;
+        }
+
+        if (Input.GetKeyDown(IniFiles.Keybinds.jump) && isGrounded && Time.timeScale == 1f)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
