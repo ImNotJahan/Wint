@@ -7,6 +7,5 @@
     ShoulderToGroin,
     DownToUp,
     Plus,
-    Minus,
     Stab
 }

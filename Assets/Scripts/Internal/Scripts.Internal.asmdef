@@ -1,0 +1,15 @@
+{
+    "name": "Scripts.Internal",
+    "references": [
+        "GUID:95facd53ba370db448011546a6c5377d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

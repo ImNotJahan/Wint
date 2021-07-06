@@ -40,12 +40,12 @@ public class PlayerMovementScript : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(IniFiles.Keybinds.sprint))
         {
             currentSpeed = speed * 1.58f;
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(IniFiles.Keybinds.crouch))
         {
             currentSpeed = speed * 0.58f;
             controller.height = .7f;

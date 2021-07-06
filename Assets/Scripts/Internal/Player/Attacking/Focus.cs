@@ -33,7 +33,7 @@ public class Focus : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(IniFiles.Keybinds.focus))
         {
             if (Time.timeScale != 0)
             {
@@ -41,7 +41,7 @@ public class Focus : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyUp(IniFiles.Keybinds.focus))
         {
             Zoom(false);
         }

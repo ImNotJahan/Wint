@@ -15,6 +15,7 @@ public class MouseLook : MonoBehaviour
     private float xRotation = 0f;
 
     public GameObject status;
+    public GameObject styles;
 
     private void Start()
     {
@@ -65,6 +66,14 @@ public class MouseLook : MonoBehaviour
                 Time.timeScale = 1;
             }
             status.SetActive(!status.activeSelf);
+        }
+        else if (Input.GetKeyDown(IniFiles.Keybinds.style))
+        {
+            styles.SetActive(true);
+        }
+        else if (Input.GetKeyUp(IniFiles.Keybinds.style))
+        {
+            styles.SetActive(false);
         }
     }
 
