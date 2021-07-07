@@ -52,6 +52,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else { controller.height = 2; }
 
+        //TODO add smoothing function to movement
         float x = 0;
         float z = 0;
 
