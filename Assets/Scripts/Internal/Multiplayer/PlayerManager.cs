@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] GameObject playerCamera;
-    [SerializeField] CharacterController playerCharacterController;
-    [SerializeField] Focus focus;
-    [SerializeField] PlayerMovementScript playerMovementScript;
-    [SerializeField] TextMeshPro text;
+    [SerializeField] GameObject playerCamera = null;
+    [SerializeField] CharacterController playerCharacterController = null;
+    [SerializeField] Focus focus = null;
+    [SerializeField] PlayerMovementScript playerMovementScript = null;
+    [SerializeField] TextMeshPro text = null;
 
     private MouseLook mouseLook;
     private Interact interact;
-
-    PhotonView pv;
+    private PhotonView pv;
 
     void Start()
     {

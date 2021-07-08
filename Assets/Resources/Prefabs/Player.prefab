@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 1386104668}
   - component: {fileID: 7050334067142919961}
   - component: {fileID: 5061136902954981811}
+  - component: {fileID: 1450771783493093394}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -236,6 +237,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
+  disabled: 0
 --- !u!114 &6027876099646035123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +381,21 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &1450771783493093394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6027876099646035127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51735efea0706f1418a59ef3a96ccf46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pv: {fileID: 1386104668}
+  movementScript: {fileID: 6027876099646035121}
+  mouseLook: {fileID: 6027876099694689226}
 --- !u!1 &6027876099694689231
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +451,7 @@ MonoBehaviour:
     {3}\\n \u039C\u03B1\u03B3\u03B9\u03BE {4}"
   status: {fileID: 0}
   styles: {fileID: 0}
+  disabled: 0
 --- !u!20 &6027876099694689225
 Camera:
   m_ObjectHideFlags: 0

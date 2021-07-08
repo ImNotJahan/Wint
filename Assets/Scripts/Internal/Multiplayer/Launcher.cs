@@ -19,6 +19,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     public GameObject find;
     public GameObject startGameButton;
 
+    public InputField tempUsernameInput;
+
     public static Launcher instance;
 
     void Start()
@@ -26,6 +28,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         instance = this;
 
         PhotonNetwork.ConnectUsingSettings();
+    }
+
+    public void SetUsername()
+    {
+        if(!string.IsNullOrEmpty(tempUsernameInput.text)) PhotonNetwork.NickName = tempUsernameInput.text;
     }
 
     public override void OnConnectedToMaster()

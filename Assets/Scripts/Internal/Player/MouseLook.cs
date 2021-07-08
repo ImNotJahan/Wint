@@ -17,6 +17,8 @@ public class MouseLook : MonoBehaviour
     public GameObject status;
     public GameObject styles;
 
+    public bool disabled = false;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -25,27 +27,29 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime * Time.timeScale;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * Time.timeScale;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        playerBody.Rotate(Vector3.up * mouseX);
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        if (Input.GetKeyUp(KeyCode.E))
+        if (!disabled)
         {
-            int layerMask = 1 << 8;
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime * Time.timeScale;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * Time.timeScale;
 
-            layerMask = ~layerMask;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+            playerBody.Rotate(Vector3.up * mouseX);
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+            if (Input.GetKeyUp(KeyCode.E))
             {
-                transform.GetComponent<Interact>().ProcessInteract(hit.transform);
-            }
-        } /*else if (Input.GetKeyUp(KeyCode.V))
+                int layerMask = 1 << 8;
+
+                layerMask = ~layerMask;
+
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+                {
+                    transform.GetComponent<Interact>().ProcessInteract(hit.transform);
+                }
+            } /*else if (Input.GetKeyUp(KeyCode.V))
         {
             if (!status.activeSelf)
             {
@@ -67,13 +71,14 @@ public class MouseLook : MonoBehaviour
             }
             status.SetActive(!status.activeSelf);
         }*/
-        else if (Input.GetKeyDown(IniFiles.Keybinds.style))
-        {
-            styles.SetActive(true);
-        }
-        else if (Input.GetKeyUp(IniFiles.Keybinds.style))
-        {
-            styles.SetActive(false);
+            if (Input.GetKeyDown(IniFiles.Keybinds.style))
+            {
+                styles.SetActive(true);
+            }
+            else if (Input.GetKeyUp(IniFiles.Keybinds.style))
+            {
+                styles.SetActive(false);
+            }
         }
     }
 

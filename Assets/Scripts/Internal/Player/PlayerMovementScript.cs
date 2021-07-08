@@ -23,6 +23,8 @@ public class PlayerMovementScript : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+    public bool disabled = false;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -30,55 +32,60 @@ public class PlayerMovementScript : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        currentSpeed = speed;
-
-        if(isGrounded && velocity.y < 0)
+        if (!disabled)
         {
-            velocity.y = -2f;
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+            currentSpeed = speed;
+
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
+
+            if (Input.GetKey(IniFiles.Keybinds.sprint))
+            {
+                currentSpeed = speed * 1.58f;
+            }
+
+            if (Input.GetKey(IniFiles.Keybinds.crouch))
+            {
+                currentSpeed = speed * 0.58f;
+                controller.height = .7f;
+            }
+            else { controller.height = 2; }
+
+            //TODO add smoothing function to movement
+            float x = 0;
+            float z = 0;
+
+            if (Input.GetKey(IniFiles.Keybinds.forward))
+            {
+                z = 1;
+            }
+            else if (Input.GetKey(IniFiles.Keybinds.backward))
+            {
+                z = -1;
+            }
+
+            if (Input.GetKey(IniFiles.Keybinds.right))
+            {
+                x = 1;
+            }
+            else if (Input.GetKey(IniFiles.Keybinds.left))
+            {
+                x = -1;
+            }
+
+            if (Input.GetKeyDown(IniFiles.Keybinds.jump) && isGrounded && Time.timeScale == 1f)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+
+            Vector3 move = transform.right * x + transform.forward * z;
+            controller.Move(move * currentSpeed * Time.deltaTime);
         }
-
-        if (Input.GetKey(IniFiles.Keybinds.sprint))
-        {
-            currentSpeed = speed * 1.58f;
-        }
-
-        if (Input.GetKey(IniFiles.Keybinds.crouch))
-        {
-            currentSpeed = speed * 0.58f;
-            controller.height = .7f;
-        }
-        else { controller.height = 2; }
-
-        //TODO add smoothing function to movement
-        float x = 0;
-        float z = 0;
-
-        if (Input.GetKey(IniFiles.Keybinds.forward))
-        {
-            z = 1;
-        } else if (Input.GetKey(IniFiles.Keybinds.backward))
-        {
-            z = -1;
-        }
-
-        if (Input.GetKey(IniFiles.Keybinds.right))
-        {
-            x = 1;
-        } else if (Input.GetKey(IniFiles.Keybinds.left))
-        {
-            x = -1;
-        }
-
-        if (Input.GetKeyDown(IniFiles.Keybinds.jump) && isGrounded && Time.timeScale == 1f)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * currentSpeed * Time.deltaTime);
     }
 }

@@ -11,6 +11,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject status;
     public GameObject styles;
 
+    public GameObject chat;
+
     void Awake()
     {
         if (instance)

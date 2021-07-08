@@ -11,6 +11,8 @@ namespace IniFiles
 {
     public class Keybinds : MonoBehaviour
     {
+        private static int version = 1;
+
         //Movement
         public static string forward = "w";
         public static string backward = "s";
@@ -24,12 +26,15 @@ namespace IniFiles
         public static string focus = "f";
         public static string style = "q";
 
+        //Multiplayer
+        public static string chat = "return";
+
         private static string directorypath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                 @"\Jahan Rashidi\Familia Game\Settings\";
         public static void LoadKeybinds()
         {
             Ini keybinds = new Ini(directorypath + "Keybinds.ini");
-            if (!keybinds.KeyExists("Forward", "Movement"))
+            if (!keybinds.KeyExists("Version") || int.Parse(keybinds.Read("Version")) < version)
             {
                 SaveKeybinds();
             }
@@ -45,6 +50,8 @@ namespace IniFiles
 
                 focus = keybinds.Read("Focus", "Attacking");
                 style = keybinds.Read("Style", "Attacking");
+
+                style = keybinds.Read("Chat", "Multiplayer");
             }
         }
 
@@ -56,6 +63,8 @@ namespace IniFiles
             }
             Ini keybinds = new Ini(directorypath + "Keybinds.ini");
 
+            keybinds.Write("Version", version.ToString());
+
             keybinds.Write("Forward", forward, "Movement");
             keybinds.Write("Backward", backward, "Movement");
             keybinds.Write("Left", left, "Movement");
@@ -66,6 +75,8 @@ namespace IniFiles
 
             keybinds.Write("Focus", focus, "Attacking");
             keybinds.Write("Style", style, "Attacking");
+
+            keybinds.Write("Chat", chat, "Multiplayer");
         }
     }
     
