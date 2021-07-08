@@ -23,8 +23,6 @@ public class PlayerMovementScript : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
-    bool crouching = false;
-
     private void Start()
     {
         controller = GetComponent<CharacterController>();

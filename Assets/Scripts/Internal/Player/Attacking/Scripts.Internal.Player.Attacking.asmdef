@@ -1,9 +1,9 @@
 {
     "name": "Scripts.Internal.Player.Attacking",
     "references": [
-        "GUID:374703978310a7d44959fb09c3f303a5",
         "GUID:d60799ab2a985554ea1a39cd38695018",
-        "GUID:95facd53ba370db448011546a6c5377d"
+        "GUID:95facd53ba370db448011546a6c5377d",
+        "GUID:38aa0363990ebb44c9ea3f35e4d0de9c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

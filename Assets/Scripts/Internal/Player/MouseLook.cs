@@ -45,7 +45,7 @@ public class MouseLook : MonoBehaviour
             {
                 transform.GetComponent<Interact>().ProcessInteract(hit.transform);
             }
-        } else if (Input.GetKeyUp(KeyCode.V))
+        } /*else if (Input.GetKeyUp(KeyCode.V))
         {
             if (!status.activeSelf)
             {
@@ -66,7 +66,7 @@ public class MouseLook : MonoBehaviour
                 Time.timeScale = 1;
             }
             status.SetActive(!status.activeSelf);
-        }
+        }*/
         else if (Input.GetKeyDown(IniFiles.Keybinds.style))
         {
             styles.SetActive(true);
