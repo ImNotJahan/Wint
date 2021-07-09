@@ -2,13 +2,12 @@
 
 public class CharacterCombat : MonoBehaviour
 {
-    public CharacterStats myStats;
+    public CharacterStats myStats = new CharacterStats();
     public Transform equipped;
-    private float attackCooldown;
+    private float attackCooldown = 0;
 
     private void Start()
     {
-        myStats = new CharacterStats();
         myStats.characterCombat = this;
     }
 

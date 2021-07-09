@@ -1532,6 +1532,63 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 11.563233, y: 7.4321404, z: 12.041198}
   m_Center: {x: -0.24575806, y: -5.488083, z: -0.01316452}
+--- !u!1 &1139994660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1139994661}
+  - component: {fileID: 1139994662}
+  m_Layer: 9
+  m_Name: healthbarTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1139994661
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139994660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0171}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 543450652610363601}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1139994662
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139994660}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1152037144
 GameObject:
   m_ObjectHideFlags: 0
@@ -3086,6 +3143,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 200}
   m_Children:
   - {fileID: 8879528567845703759}
+  - {fileID: 1139994661}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -3170,6 +3228,11 @@ MonoBehaviour:
   onGround: 1
   weaponId: sword
   anim: {fileID: 834473152023272735}
+  baseDamage: 10
+  variation: 3
+  attackSpeed: 1
+  type: 0
+  magic: 0
 --- !u!111 &834473152023272735
 Animation:
   m_ObjectHideFlags: 0
@@ -3199,6 +3262,8 @@ GameObject:
   - component: {fileID: 919132148139285101}
   - component: {fileID: 919132148139285100}
   - component: {fileID: 919132148139285103}
+  - component: {fileID: 919132148139285104}
+  - component: {fileID: 919132148139285105}
   m_Layer: 9
   m_Name: minotaur
   m_TagString: Untagged
@@ -3217,8 +3282,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.03078264
-  m_Radius: 0.014367398
+  m_Height: 0.058
+  m_Radius: 0.003
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -3283,7 +3348,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02560a45600c9094a827d27961063f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myStats:
+    onTakeDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    movementScript: {fileID: 0}
+    characterCombat: {fileID: 0}
+    entityId: 
+    maxHealth: 100
+    health: 100
+    damage: 10
+    defense: 0
+    attackSpeed: 1
+    equipedWeapon: 
+    weapon: {fileID: 0}
+    isMonster: 1
   equipped: {fileID: 0}
+--- !u!114 &919132148139285104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148139285099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4916543f7edc8454b8e7f89e68be136e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &919132148139285105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148139285099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6fa2868186f7bb4cbfa6f52be4f9633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthbar: {fileID: 16611220132068763, guid: 2472c7814b88aff47bd6e216ef0a24d1, type: 3}
+  target: {fileID: 1139994661}
+  combat: {fileID: 919132148139285103}
 --- !u!4 &1015337187648572410
 Transform:
   m_ObjectHideFlags: 0
