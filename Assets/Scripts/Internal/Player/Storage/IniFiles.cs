@@ -9,7 +9,7 @@ namespace IniFiles
 {
     public class Keybinds : MonoBehaviour
     {
-        private static int version = 1;
+        private static int version = 2;
 
         //Movement
         public static string forward = "w";
@@ -23,6 +23,7 @@ namespace IniFiles
         //Attacking
         public static string focus = "f";
         public static string style = "q";
+        public static string interact = "e";
 
         //Multiplayer
         public static string chat = "return";
@@ -47,6 +48,7 @@ namespace IniFiles
                 sprint = keybinds.Read("Jump", "Movement");
 
                 focus = keybinds.Read("Focus", "Attacking");
+                interact = keybinds.Read("Interact", "Attacking");
                 style = keybinds.Read("Style", "Attacking");
 
                 style = keybinds.Read("Chat", "Multiplayer");
@@ -73,6 +75,7 @@ namespace IniFiles
 
             keybinds.Write("Focus", focus, "Attacking");
             keybinds.Write("Style", style, "Attacking");
+            keybinds.Write("Interact", interact, "Attacking");
 
             keybinds.Write("Chat", chat, "Multiplayer");
         }

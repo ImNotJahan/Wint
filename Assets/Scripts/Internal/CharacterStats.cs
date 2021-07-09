@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class CharacterStats
@@ -18,6 +19,8 @@ public class CharacterStats
 
     public string equipedWeapon = "";
     public Weapon weapon;
+
+    public List<Item> inventory = new List<Item>();
 
     public bool isMonster = true;
 

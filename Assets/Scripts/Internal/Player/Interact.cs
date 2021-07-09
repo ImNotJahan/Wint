@@ -30,7 +30,7 @@ public class Interact : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(IniFiles.Keybinds.interact))
         {
             int layerMask = 1 << 8;
 

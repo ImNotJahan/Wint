@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon : Item
 {
     public bool onGround = true;
     public string weaponId;
@@ -13,15 +13,13 @@ public class Weapon : MonoBehaviour
     public WeaponType type = WeaponType.Slicing;
     public bool magic = false;
 
-    public void OnTriggerEnter(Collider other)
+    new public void PickUp(Collider collider)
     {
-        if (other.tag == "Player")
-        {
-            other.GetComponent<CharacterCombat>().myStats.equipedWeapon = weaponId;
-            transform.parent = other.GetComponent<CharacterCombat>().equipped;
-            transform.localPosition = Vector3.zero;
-            transform.rotation.Set(90, 0, 0, 0);
-        }
+        base.PickUp(collider);
+        collider.GetComponent<CharacterCombat>().myStats.equipedWeapon = weaponId;
+        transform.localPosition = Vector3.zero;
+        transform.parent = collider.GetComponent<CharacterCombat>().equipped;
+        transform.rotation.Set(90, 0, 0, 0);
     }
 }
 
