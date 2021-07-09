@@ -8,30 +8,22 @@ public class NPCBase : MonoBehaviour
     public UIHandler uihandler;
 
     public string[] dialogs = new string[] { };
-    public int[] dialogIds = new int[] { };
     public Arr[] responses = new Arr[] { };
-    public int[] responseIds = new int[] { };
 
     [NonSerialized]
     public int responseId = 0;
     [NonSerialized]
     public static int responseId2 = 0;
 
+    /*How does this work?
+     I'm not completely sure myself but basically what happens is it displays the message and responses
+     based off both of the response ids added together. The first response id is 1+3*k basically,
+     because there are max 3 responses to a dialog, and the 1 part I'm not sure about. ResonseId2
+     is just whichever response the user clicks on eg the first one would be 0, the second 1, and the
+     third 2.*/
     public void HandleClick()
     {
-        switch(responseId + responseId2)
-        {
-            case 1:
-                uihandler.displayMessage(dialogs[1], npcName, responses[1], HandleClick, this, 4);
-                break;
-
-            case 2:
-                uihandler.displayMessage(dialogs[2], npcName, responses[2], HandleClick, this, 7);
-                break;
-
-            default:
-                uihandler.displayMessage("Response id: " + responseId + " + " + responseId2, npcName, responses[2], HandleClick, this, 7);
-                break;
-        }
+        uihandler.displayMessage(dialogs[responseId + responseId2], npcName, 
+            responses[responseId + responseId2], HandleClick, this, responseId + 3);
     }
 }

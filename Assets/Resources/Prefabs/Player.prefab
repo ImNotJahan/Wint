@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1903322209269887840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7101294439191426164}
+  m_Layer: 2
+  m_Name: equipped
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7101294439191426164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903322209269887840}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: -0.5}
+  m_LocalPosition: {x: -0.6, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6027876099646035122}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 270}
 --- !u!1 &5171439966849236720
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +223,7 @@ GameObject:
   - component: {fileID: 7050334067142919961}
   - component: {fileID: 5061136902954981811}
   - component: {fileID: 1450771783493093394}
+  - component: {fileID: 51796713426275842}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -214,6 +245,7 @@ Transform:
   - {fileID: 6027876099694689224}
   - {fileID: 6027876100396427894}
   - {fileID: 5937676213434241379}
+  - {fileID: 7101294439191426164}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -396,6 +428,19 @@ MonoBehaviour:
   pv: {fileID: 1386104668}
   movementScript: {fileID: 6027876099646035121}
   mouseLook: {fileID: 6027876099694689226}
+--- !u!114 &51796713426275842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6027876099646035127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02560a45600c9094a827d27961063f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipped: {fileID: 7101294439191426164}
 --- !u!1 &6027876099694689231
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uihandler: {fileID: 0}
+  characterCombat: {fileID: 0}
 --- !u!114 &6027876099694689220
 MonoBehaviour:
   m_ObjectHideFlags: 0

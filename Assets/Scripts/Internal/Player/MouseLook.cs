@@ -38,18 +38,7 @@ public class MouseLook : MonoBehaviour
             playerBody.Rotate(Vector3.up * mouseX);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                int layerMask = 1 << 8;
-
-                layerMask = ~layerMask;
-
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
-                {
-                    transform.GetComponent<Interact>().ProcessInteract(hit.transform);
-                }
-            } /*else if (Input.GetKeyUp(KeyCode.V))
+     /*else if (Input.GetKeyUp(KeyCode.V))
         {
             if (!status.activeSelf)
             {
