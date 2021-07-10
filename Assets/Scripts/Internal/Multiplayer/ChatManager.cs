@@ -36,7 +36,7 @@ public class ChatManager : MonoBehaviour
                     chatInput.text = "";
 
                     movementScript.disabled = false;
-                    mouseLook.disabled = false;
+                    MouseLook.disabled = false;
                 }
                 else
                 {
@@ -44,7 +44,7 @@ public class ChatManager : MonoBehaviour
                     chatInput.Select();
 
                     movementScript.disabled = true;
-                    mouseLook.disabled = true;
+                    MouseLook.disabled = true;
                 }
             }
         }
@@ -73,7 +73,7 @@ public class ChatManager : MonoBehaviour
             chat.SetActive(false);
 
             movementScript.disabled = false;
-            mouseLook.disabled = false;
+            MouseLook.disabled = false;
         }
     }
 }

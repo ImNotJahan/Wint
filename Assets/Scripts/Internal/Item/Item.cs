@@ -3,6 +3,8 @@
 public class Item : MonoBehaviour
 {
     public GameObject gameItem;
+    public string item_id;
+
     bool held = false;
 
     public void OnTriggerStay(Collider collider)

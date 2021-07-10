@@ -9,7 +9,7 @@ namespace IniFiles
 {
     public class Keybinds : MonoBehaviour
     {
-        private static int version = 2;
+        private static int version = 4;
 
         //Movement
         public static string forward = "w";
@@ -28,6 +28,10 @@ namespace IniFiles
         //Multiplayer
         public static string chat = "return";
 
+        //Other
+        public static string inventory = "tab";
+        public static string pause = "escape";
+
         private static string directorypath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                 @"\Jahan Rashidi\Familia Game\Settings\";
         public static void LoadKeybinds()
@@ -45,13 +49,16 @@ namespace IniFiles
                 right = keybinds.Read("Right", "Movement");
                 crouch = keybinds.Read("Crouch", "Movement");
                 sprint = keybinds.Read("Sprint", "Movement");
-                sprint = keybinds.Read("Jump", "Movement");
+                jump = keybinds.Read("Jump", "Movement");
 
                 focus = keybinds.Read("Focus", "Attacking");
                 interact = keybinds.Read("Interact", "Attacking");
                 style = keybinds.Read("Style", "Attacking");
 
-                style = keybinds.Read("Chat", "Multiplayer");
+                chat = keybinds.Read("Chat", "Multiplayer");
+
+                inventory = keybinds.Read("Inventory", "Other");
+                pause = keybinds.Read("Pause", "Other");
             }
         }
 
@@ -78,6 +85,9 @@ namespace IniFiles
             keybinds.Write("Interact", interact, "Attacking");
 
             keybinds.Write("Chat", chat, "Multiplayer");
+
+            keybinds.Write("Inventory", inventory, "Other");
+            keybinds.Write("Pause", pause, "Other");
         }
     }
     

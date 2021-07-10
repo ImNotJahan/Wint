@@ -1,0 +1,17 @@
+{
+    "name": "Player.UI",
+    "references": [
+        "GUID:ffa9ab689be311b45a550f0f8b570f96",
+        "GUID:95facd53ba370db448011546a6c5377d",
+        "GUID:eec0964c48f6f4e40bc3ec2257ccf8c5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
