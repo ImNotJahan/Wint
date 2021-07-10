@@ -13,13 +13,13 @@ public class Weapon : Item
     public WeaponType type = WeaponType.Slicing;
     public bool magic = false;
 
-    new public void PickUp(Collider collider)
+    public override void PickUp(Collider collider)
     {
         base.PickUp(collider);
         collider.GetComponent<CharacterCombat>().myStats.equipedWeapon = weaponId;
-        transform.localPosition = Vector3.zero;
         transform.parent = collider.GetComponent<CharacterCombat>().equipped;
         transform.rotation.Set(90, 0, 0, 0);
+        transform.localPosition = Vector3.zero;
     }
 }
 

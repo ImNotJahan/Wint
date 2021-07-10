@@ -1,3 +1,15 @@
-﻿{
-	"name": "Scripts.Internal.AI"
+{
+    "name": "Scripts.Internal.AI",
+    "references": [
+        "GUID:ffa9ab689be311b45a550f0f8b570f96"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

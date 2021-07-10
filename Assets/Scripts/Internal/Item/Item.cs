@@ -2,16 +2,23 @@
 
 public class Item : MonoBehaviour
 {
-    public void OnTriggerEnter(Collider collider)
+    public GameObject gameItem;
+    bool held = false;
+
+    public void OnTriggerStay(Collider collider)
     {
-        if (collider.tag == "Player" && Input.GetKeyUp(IniFiles.Keybinds.interact))
+        if (!held)
         {
-            PickUp(collider);
+            if (collider.tag == "Player" && Input.GetKeyUp(IniFiles.Keybinds.interact))
+            {
+                PickUp(collider);
+            }
         }
     }
 
-    public void PickUp(Collider collider)
+    public virtual void PickUp(Collider collider)
     {
         collider.GetComponent<CharacterCombat>().myStats.inventory.Add(this);
+        held = true;
     }
 }

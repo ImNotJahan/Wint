@@ -28,6 +28,13 @@ public class CharacterCombat : MonoBehaviour
 
     public void die()
     {
+        if (myStats.dropItemsOnDeath)
+        {
+            foreach(Item item in myStats.inventory)
+            {
+                Instantiate(item.gameItem).transform.position = transform.position;
+            }
+        }
         Destroy(gameObject);
     }
 

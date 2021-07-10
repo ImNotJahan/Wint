@@ -270,6 +270,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   disabled: 0
+  characterStats:
+    onTakeDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    movementScript: {fileID: 0}
+    characterCombat: {fileID: 0}
+    entityId: 
+    maxHealth: 100
+    health: 100
+    damage: 10
+    defense: 0
+    attackSpeed: 1
+    equipedWeapon: 
+    weapon: {fileID: 0}
+    inventory: []
+    dropItemsOnDeath: 0
+    isMonster: 1
 --- !u!114 &6027876099646035123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +457,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02560a45600c9094a827d27961063f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myStats:
+    onTakeDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    movementScript: {fileID: 6027876099646035121}
+    characterCombat: {fileID: 51796713426275842}
+    entityId: 
+    maxHealth: 100
+    health: 100
+    damage: 10
+    defense: 0
+    attackSpeed: 1
+    equipedWeapon: 
+    weapon: {fileID: 0}
+    inventory: []
+    dropItemsOnDeath: 0
+    isMonster: 1
   equipped: {fileID: 7101294439191426164}
 --- !u!1 &6027876099694689231
 GameObject:

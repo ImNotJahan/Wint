@@ -22,6 +22,7 @@ public class CharacterStats
 
     public List<Item> inventory = new List<Item>();
 
+    public bool dropItemsOnDeath = false;
     public bool isMonster = true;
 
     public int AttackPower()

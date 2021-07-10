@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -25,11 +26,17 @@ public class PlayerMovementScript : MonoBehaviour
 
     public bool disabled = false;
     public CharacterStats characterStats = new CharacterStats();
+    public static List<Vector3> spawnpoints = new List<Vector3>();
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         characterStats.movementScript = this;
+
+        foreach(Transform spawn in GameObject.Find("spawnpoints").transform)
+        {
+            spawnpoints.Add(spawn.position);
+        }
     }
 
     void Update()
@@ -95,13 +102,12 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
-    public static Vector3[] spawnpoints;
     public void die()
     {
         characterStats = new CharacterStats();
         characterStats.movementScript = this;
 
-        transform.position = spawnpoints[Random.Range(0, spawnpoints.Length - 1)];
+        transform.position = spawnpoints[Random.Range(0, spawnpoints.Count - 1)];
     }
 
     private Vector2 SmoothInput(float targetH, float targetV)
