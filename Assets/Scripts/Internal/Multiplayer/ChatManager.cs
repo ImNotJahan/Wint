@@ -11,7 +11,6 @@ public class ChatManager : MonoBehaviour
 
     [SerializeField] PhotonView pv = null;
     [SerializeField] PlayerMovementScript movementScript = null;
-    [SerializeField] MouseLook mouseLook = null;
 
     private void Awake()
     {

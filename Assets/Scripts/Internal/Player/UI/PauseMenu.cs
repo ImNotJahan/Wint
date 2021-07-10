@@ -27,6 +27,11 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = menu.activeSelf;
     }
 
+    public void Save()
+    {
+        CharacterStats.currentPlayerInstance.Save();
+    }
+
     public void MainMenu()
     {
         SceneManager.LoadScene(0);

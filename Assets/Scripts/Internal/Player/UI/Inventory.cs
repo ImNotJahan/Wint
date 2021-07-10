@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] GameObject inventory = null;
-    [SerializeField] GameObject invDetails = null;
+    //[SerializeField] GameObject invDetails = null;
     [SerializeField] GameObject invPrefab = null;
     [SerializeField] Transform invList = null;
 

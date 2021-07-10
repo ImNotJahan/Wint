@@ -1,9 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class CharacterStats
 {
+    private static string directorypath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                @"\Jahan Rashidi\Familia Game\Save\";
+
+    public static CharacterStats currentPlayerInstance;
+
     public ParamEvent onTakeDamage = new ParamEvent();
 
     public PlayerMovementScript movementScript;
@@ -29,17 +36,17 @@ public class CharacterStats
     {
         if (weapon != null)
         {
-            return damage + weapon.baseDamage + Random.Range(-weapon.variation, weapon.variation);
+            return damage + weapon.baseDamage + UnityEngine.Random.Range(-weapon.variation, weapon.variation);
         }
         else
         {
-            return damage + Random.Range(-3, 3);
+            return damage + UnityEngine.Random.Range(-3, 3);
         }
     }
 
     public void TakeDamage(int damage)
     {
-        damage += Random.Range(-3, 3);
+        damage += UnityEngine.Random.Range(-3, 3);
         health -= Mathf.Max(damage - defense, 1);
 
         if (health < 1)
@@ -54,5 +61,22 @@ public class CharacterStats
     public override string ToString()
     {
         return entityId;
+    }
+
+    public void Save()
+    {
+        if (!Directory.Exists(directorypath))
+        {
+            Directory.CreateDirectory(directorypath);
+        }
+
+        string data = JsonUtility.ToJson(this);
+        File.WriteAllText(directorypath + "Save0.json", data);
+    }
+
+    public void Load()
+    {
+        string data = File.ReadAllText(directorypath + "Save0.json");
+        JsonUtility.FromJsonOverwrite(data, this);
     }
 }

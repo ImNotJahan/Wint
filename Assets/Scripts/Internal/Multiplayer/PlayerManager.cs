@@ -34,6 +34,9 @@ public class PlayerManager : MonoBehaviour
             mouseLook.styles = RoomManager.instance.styles;
 
             interact.uihandler = RoomManager.instance.uiHandler;
+
+            CharacterStats.currentPlayerInstance = playerCharacterController.
+                gameObject.GetComponent<CharacterCombat>().myStats;
         }
     }
 }
