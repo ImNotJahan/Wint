@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2599524521605237001}
   - component: {fileID: 4547286248321024174}
   m_Layer: 0
-  m_Name: Horn
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2599524521605237006}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2599524521605237006}
-  m_Mesh: {fileID: -5495902117074765545, guid: 106ede7973117c94ba2222c2093490a8, type: 3}
+  m_Mesh: {fileID: 2534964839176971238, guid: 7a71026ac2d2f304f9e147a5c7ad254e, type: 3}
 --- !u!23 &4545154259412134107
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 106ede7973117c94ba2222c2093490a8, type: 3}
+  - {fileID: 2100000, guid: b16a67a7de42c844ab38cc2bb6cd848b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,4 +107,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameItem: {fileID: 2599524521605237006}
-  item_id: minotaur_horn
+  item_id: coin

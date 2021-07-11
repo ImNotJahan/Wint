@@ -5,11 +5,19 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] GameObject inventory = null;
-    //[SerializeField] GameObject invDetails = null;
     [SerializeField] GameObject invPrefab = null;
     [SerializeField] Transform invList = null;
 
-    [SerializeField] CharacterCombat stats = null;
+    [SerializeField] Text title = null;
+    [SerializeField] Text description = null;
+
+    CharacterStats stats;
+
+    private void Start()
+    {
+        inventory.SetActive(false);
+        stats = CharacterStats.currentPlayerInstance;
+    }
 
     private void Update()
     {
@@ -17,15 +25,37 @@ public class Inventory : MonoBehaviour
         {
             if (!inventory.activeSelf)
             {
-                inventory.SetActive(true);
-                
-                foreach(Item item in stats.myStats.inventory)
+                foreach (Transform item in invList)
+                {
+                    Destroy(item.gameObject);
+                }
+
+                foreach (Item item in stats.inventory)
                 {
                     GameObject invItem = Instantiate(invPrefab, invList);
                     invItem.transform.GetChild(0).GetComponent<Text>().text = item.item_id;
+
+                    InventoryItem invItemComponent = invItem.GetComponent<InventoryItem>();
+                    invItemComponent.title = item.item_id;
+                    invItemComponent.description = item.description;
+                    invItemComponent.count = item.count;
+
+                    invItemComponent.invTitle = title;
+                    invItemComponent.invDescription = description;
+
+                    invItem.GetComponent<Button>().onClick.AddListener(invItemComponent.DisplayItem);
                 }
+
+                title.text = "";
+                description.text = "";
             }
-            else inventory.SetActive(false);
+
+            inventory.SetActive(!inventory.activeSelf);
+
+            MouseLook.disabled = inventory.activeSelf;
+
+            Cursor.lockState = inventory.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = inventory.activeSelf;
         }
     }
 }

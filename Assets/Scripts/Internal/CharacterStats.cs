@@ -28,6 +28,7 @@ public class CharacterStats
     public Weapon weapon;
 
     public List<Item> inventory = new List<Item>();
+    public List<Quest> log = new List<Quest>();
 
     public bool dropItemsOnDeath = false;
     public bool isMonster = true;

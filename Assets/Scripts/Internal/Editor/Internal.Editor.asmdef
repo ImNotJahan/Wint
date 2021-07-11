@@ -1,6 +1,8 @@
 {
     "name": "Internal.Editor",
-    "references": [],
+    "references": [
+        "GUID:ffa9ab689be311b45a550f0f8b570f96"
+    ],
     "includePlatforms": [
         "Editor"
     ],

@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     private Interact interact;
     private PhotonView pv;
 
-    void Start()
+    void Awake()
     {
         pv = GetComponent<PhotonView>();
 

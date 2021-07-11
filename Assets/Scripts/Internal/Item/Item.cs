@@ -4,6 +4,9 @@ public class Item : MonoBehaviour
 {
     public GameObject gameItem;
     public string item_id;
+    public string description;
+
+    public int count = 1;
 
     bool held = false;
 
