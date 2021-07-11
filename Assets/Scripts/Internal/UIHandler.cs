@@ -50,6 +50,7 @@ public class UIHandler : MonoBehaviour
         dialogBox.SetActive(true);
         dialogBox.transform.GetChild(0).GetComponent<Text>().text = title;
         dialogBox.transform.GetChild(1).GetComponent<Text>().text = message;
+        graduallyLoadText(message.Length);
 
         for (int k = 0; k < responses.Length(); k++)
         {
@@ -59,6 +60,15 @@ public class UIHandler : MonoBehaviour
         }
 
         onEsc.AddListener(closeMessage);
+    }
+
+    IEnumerator graduallyLoadText(int amountOfCharacters)
+    {
+        for(int k = 0; k < amountOfCharacters; k++)
+        {
+            dialogBox.transform.GetChild(1).GetComponent<Text>().resizeTextMaxSize = k;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     public void displayMessage(string message, string title, Arr responses, UnityAction call, NPCBase npc, int id)
@@ -98,7 +108,7 @@ public class UIHandler : MonoBehaviour
 
     public void questAdded(string title)
     {
-        questAppearedText.text = "QUEST UNLOCKED:\n" + title;
+        questAppearedText.text = "QUEST UNLOCKED:\n" + title.ToUpper();
         StartCoroutine(hideAfter(questAppearedText.gameObject, 3));
     }
 

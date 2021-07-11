@@ -7,7 +7,7 @@ public class Quest : ScriptableObject
     public UnityEvent onCompletion = new UnityEvent();
     public string title;
     public string description;
-    [HideInInspector] public Item[] reward = new Item[0];
+    [HideInInspector] public Item[] reward;
 
     public Quest(string title, string description)
     {

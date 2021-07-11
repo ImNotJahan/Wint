@@ -7,5 +7,5 @@ public class Item : ScriptableObject
     public string item_id;
     public string description;
 
-    public int count = 1;
+    public int count;
 }

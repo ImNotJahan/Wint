@@ -9,7 +9,7 @@ namespace IniFiles
 {
     public class Keybinds : MonoBehaviour
     {
-        private static int version = 4;
+        private static int version = 5;
 
         //Movement
         public static string forward = "w";
@@ -30,6 +30,7 @@ namespace IniFiles
 
         //Other
         public static string inventory = "tab";
+        public static string log = "j";
         public static string pause = "escape";
 
         private static string directorypath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
@@ -59,6 +60,7 @@ namespace IniFiles
 
                 inventory = keybinds.Read("Inventory", "Other");
                 pause = keybinds.Read("Pause", "Other");
+                log = keybinds.Read("Log", "Other");
             }
         }
 
@@ -88,6 +90,7 @@ namespace IniFiles
 
             keybinds.Write("Inventory", inventory, "Other");
             keybinds.Write("Pause", pause, "Other");
+            keybinds.Write("Log", log, "Other");
         }
     }
     
