@@ -112,7 +112,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1914e10eef85447a5bd79d7cca6c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 09a87361101180a4f92e4c983b596a05, type: 2}
   gameItem: {fileID: 7771427464804316225}
+  item_id: 
+  description: 
+  count: 1
   onGround: 1
   weaponId: sword
   anim: {fileID: 7771427464804316229}

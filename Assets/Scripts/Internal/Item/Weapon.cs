@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Weapon : Item
+public class Weapon : PickableItem
 {
     public bool onGround = true;
     public string weaponId;

@@ -29,4 +29,4 @@ MonoBehaviour:
   title: Test
   description: test
   reward:
-  - {fileID: 4547286248321024174, guid: c2642c646866432449b1a20d6a9546c7, type: 3}
+  - {fileID: 0}
