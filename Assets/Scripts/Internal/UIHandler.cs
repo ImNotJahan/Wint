@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using static MultidimensionalArray;
@@ -7,6 +8,8 @@ public class UIHandler : MonoBehaviour
 {
     private UnityEvent onEsc = new UnityEvent();
     private UnityAction[] setResponseId = new UnityAction[] { response0, response1, response2 };
+
+    [SerializeField] private Text questAppearedText = null;
 
     static void response0()
     {
@@ -91,5 +94,18 @@ public class UIHandler : MonoBehaviour
         Time.timeScale = 1;
 
         onEsc.RemoveListener(closeMessage);
+    }
+
+    public void questAdded(string title)
+    {
+        questAppearedText.text = "QUEST UNLOCKED:\n" + title;
+        StartCoroutine(hideAfter(questAppearedText.gameObject, 3));
+    }
+
+    IEnumerator hideAfter(GameObject gameObj, float seconds)
+    {
+        gameObj.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        gameObj.SetActive(false);
     }
 }

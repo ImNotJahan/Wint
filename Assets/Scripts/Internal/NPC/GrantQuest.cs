@@ -5,6 +5,7 @@ public class GrantQuest : MonoBehaviour
 {
     public string dialog;
     public Quest quest;
+    public UIHandler uihandler;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class GrantQuest : MonoBehaviour
         if(arg[0] == dialog)
         {
             CharacterStats.currentPlayerInstance.log.Add(quest);
+            uihandler.questAdded(quest.title);
         }
     }
 }
