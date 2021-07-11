@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 589abdffa5f157846b7d1510e42b8b06, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: 29d1736f836d5b24692183edeb72240c, type: 3}
+  m_Name: ItemList
   m_EditorClassIdentifier: 
-  gameItem: {fileID: 7771427464804316225, guid: 20bccfa2d3b465f448ef67e3084661e1,
-    type: 3}
-  item_id: sword
-  description: A sharp weapon
-  count: 1

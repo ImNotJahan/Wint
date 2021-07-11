@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 589abdffa5f157846b7d1510e42b8b06, type: 3}
-  m_Name: Coin 1
+  m_Name: Horn
   m_EditorClassIdentifier: 
-  gameItem: {fileID: 0}
-  item_id: 
-  description: 
+  gameItem: {fileID: 2599524521605237006, guid: 92c5b3259aae31e4e888ad04630a43e8,
+    type: 3}
+  item_id: horn
+  description: A pointy thing coming out of a head
   count: 1

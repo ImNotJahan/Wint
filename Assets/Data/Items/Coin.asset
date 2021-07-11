@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589abdffa5f157846b7d1510e42b8b06, type: 3}
   m_Name: Coin
   m_EditorClassIdentifier: 
-  gameItem: {fileID: 0}
-  item_id: 
-  description: 
+  gameItem: {fileID: 2599524521605237006, guid: c2642c646866432449b1a20d6a9546c7,
+    type: 3}
+  item_id: coin
+  description: Money
   count: 1

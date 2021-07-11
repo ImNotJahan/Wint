@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903322209269887840}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: -0.6, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: -0.73, y: 0.3, z: 0.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6027876099646035122}
@@ -285,6 +285,7 @@ MonoBehaviour:
     equipedWeapon: 
     weapon: {fileID: 0}
     inventory: []
+    log: []
     dropItemsOnDeath: 0
     isMonster: 1
 --- !u!114 &6027876099646035123
@@ -444,7 +445,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pv: {fileID: 1386104668}
   movementScript: {fileID: 6027876099646035121}
-  mouseLook: {fileID: 6027876099694689226}
 --- !u!114 &51796713426275842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +472,7 @@ MonoBehaviour:
     equipedWeapon: 
     weapon: {fileID: 0}
     inventory: []
+    log: []
     dropItemsOnDeath: 0
     isMonster: 1
   equipped: {fileID: 7101294439191426164}
@@ -530,7 +531,6 @@ MonoBehaviour:
     {3}\\n \u039C\u03B1\u03B3\u03B9\u03BE {4}"
   status: {fileID: 0}
   styles: {fileID: 0}
-  disabled: 0
 --- !u!20 &6027876099694689225
 Camera:
   m_ObjectHideFlags: 0

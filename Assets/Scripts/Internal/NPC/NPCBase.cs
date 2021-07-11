@@ -7,6 +7,8 @@ public class NPCBase : MonoBehaviour
     public string npcName;
     public UIHandler uihandler;
 
+    public ParamEvent onDialog = new ParamEvent();
+
     public string[] dialogs = new string[] { };
     public Arr[] responses = new Arr[] { };
 
@@ -23,7 +25,9 @@ public class NPCBase : MonoBehaviour
      third 2.*/
     public void HandleClick()
     {
-        uihandler.displayMessage(dialogs[responseId + responseId2], npcName, 
+        string dialog = dialogs[responseId + responseId2];
+        uihandler.displayMessage(dialog, npcName, 
             responses[responseId + responseId2], HandleClick, this, responseId + 3);
+        onDialog.Invoke(new string[] { dialog });
     }
 }

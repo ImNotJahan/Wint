@@ -29,7 +29,9 @@ public class ChatManager : MonoBehaviour
             {
                 if (chatInput.isFocused && chatInput.text.Length > 0)
                 {
-                    pv.RPC("SendChat", RpcTarget.All, chatInput.text);
+                    if (chatInput.text.Substring(0, 1) == "!") Cheats.Check(chatInput.text);
+                    else pv.RPC("SendChat", RpcTarget.All, chatInput.text);
+
                     StartCoroutine(HideChat());
 
                     chatInput.text = "";
