@@ -35,7 +35,7 @@ public class AchievementHandler : MonoBehaviour
     private IEnumerator AchievementAdded(string title)
     {
         string achievementId = title.ToLower();
-        achievementId = new Regex("^a-z").Replace(achievementId, "");
+        achievementId = Regex.Replace(achievementId, "[^a-z ]", string.Empty);
         achievementId = achievementId.Replace(" ", "_");
 
         achievementText.text = title;
