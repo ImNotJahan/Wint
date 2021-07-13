@@ -10,10 +10,17 @@ public class LocalHealthbar : MonoBehaviour
     {
         stats = CharacterStats.currentPlayerInstance;
         stats.onTakeDamage.AddListener(onTakeDamage);
+
+        UIHandler.onMenuChange.AddListener(OnMenuChange);
     }
 
     private void onTakeDamage(string[] args)
     {
         healthbar.fillAmount = stats.health / stats.maxHealth; 
+    }
+
+    private void OnMenuChange(string[] args)
+    {
+        if (args.Length > 0) healthbar.transform.parent.gameObject.SetActive(args[0] == "off");
     }
 }

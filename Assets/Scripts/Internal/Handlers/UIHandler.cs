@@ -7,6 +7,8 @@ using static MultidimensionalArray;
 public class UIHandler : MonoBehaviour
 {
     private UnityEvent onEsc = new UnityEvent();
+    public static ParamEvent onMenuChange = new ParamEvent();
+
     private UnityAction[] setResponseId = new UnityAction[] { response0, response1, response2 };
 
     [SerializeField] private Text questAppearedText = null;
