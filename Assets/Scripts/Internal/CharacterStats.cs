@@ -23,6 +23,7 @@ public class CharacterStats
     public int damage = 10;
     public int defense = 0;
     public float attackSpeed = 1f;
+    public float damageSpeed = 0.2f;
 
     public string equipedWeapon = "";
     public Weapon weapon;

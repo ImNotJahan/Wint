@@ -13,6 +13,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public GameObject chat;
 
+    public GameObject cooldownBar;
+
     void Awake()
     {
         if (instance)
@@ -28,7 +30,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         if (!PhotonNetwork.InRoom)
         {
-            Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+            GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+            player.GetComponent<PlayerManager>().cooldownBar = cooldownBar;
         }
     }
 

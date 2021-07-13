@@ -28,7 +28,7 @@ public class AttackPlayer : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, target.position) < attackDistance && canAttack)
                 {
-                    combat.Attack(target.GetComponent<CharacterCombat>().myStats);
+                    combat.Attack();
                     StartCoroutine(CanAttack());
                 }
                 

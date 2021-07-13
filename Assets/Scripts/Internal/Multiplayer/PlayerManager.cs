@@ -10,9 +10,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] PlayerMovementScript playerMovementScript = null;
     [SerializeField] TextMeshPro text = null;
 
+    public GameObject cooldownBar = null;
+
     private MouseLook mouseLook;
     private Interact interact;
     private PhotonView pv;
+    private CharacterCombat combat;
 
     void Awake()
     {
@@ -29,14 +32,19 @@ public class PlayerManager : MonoBehaviour
 
             mouseLook = playerCamera.GetComponent<MouseLook>();
             interact = playerCamera.GetComponent<Interact>();
+            combat = playerCharacterController.gameObject.GetComponent<CharacterCombat>();
 
             mouseLook.status = RoomManager.instance.status;
             mouseLook.styles = RoomManager.instance.styles;
 
             interact.uihandler = RoomManager.instance.uiHandler;
 
-            CharacterStats.currentPlayerInstance = playerCharacterController.
-                gameObject.GetComponent<CharacterCombat>().myStats;
+            CharacterStats.currentPlayerInstance = combat.myStats;
         }
+    }
+
+    private void Start()
+    {
+        combat.cooldownBar = cooldownBar;
     }
 }

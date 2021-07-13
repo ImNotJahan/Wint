@@ -41,17 +41,7 @@ public class Interact : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
-            bool didHit = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3);
-
-            if (didHit && hit.transform.GetComponent<CharacterCombat>() != null)
-            {
-                characterCombat.Attack(hit.transform.GetComponent<CharacterCombat>().myStats);
-            }
-            else
-            {
-                characterCombat.Attack(null);
-            }
+            characterCombat.Attack();
         }
     }
 }
