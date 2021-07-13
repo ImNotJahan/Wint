@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -25,6 +26,8 @@ public class PauseMenu : MonoBehaviour
 
         Cursor.lockState = menu.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = menu.activeSelf;
+
+        if (!PhotonNetwork.InRoom) Time.timeScale = menu.activeSelf ? 0 : 1;
     }
 
     public void Save()

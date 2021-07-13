@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class MenuHandler : MonoBehaviour
 
     public void Singleplayer()
     {
-        SceneManager.LoadScene(1);
+        GameManager.instance.LoadGame();
     }
 
     public void Mods()

@@ -17,3 +17,4 @@ MonoBehaviour:
   item_id: coin
   description: Money
   count: 1
+  rarity: 1

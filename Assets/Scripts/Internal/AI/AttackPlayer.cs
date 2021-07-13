@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class AttackPlayer : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class AttackPlayer : MonoBehaviour
     public int maxDistance = 20;
     public int attackDistance = 2;
     public int speed = 4;
+
+    private bool canAttack = true;
 
     private void Start()
     {
@@ -23,11 +26,13 @@ public class AttackPlayer : MonoBehaviour
 
             if (Vector3.Distance(transform.position, target.position) < maxDistance)
             {
-                if (Vector3.Distance(transform.position, target.position) < attackDistance)
+                if (Vector3.Distance(transform.position, target.position) < attackDistance && canAttack)
                 {
                     combat.Attack(target.GetComponent<CharacterCombat>().myStats);
+                    StartCoroutine(CanAttack());
                 }
-                else
+                
+                if(Vector3.Distance(transform.position, target.position) > attackDistance - 1)
                 {
                     Vector3 movement = transform.forward * speed * Time.deltaTime;
                     movement.y = 0;
@@ -47,5 +52,12 @@ public class AttackPlayer : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator CanAttack()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(combat.myStats.attackSpeed);
+        canAttack = true;
     }
 }

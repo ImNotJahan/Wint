@@ -32,12 +32,8 @@ public class Interact : MonoBehaviour
     {
         if (Input.GetKeyUp(IniFiles.Keybinds.interact))
         {
-            int layerMask = 1 << 8;
-
-            layerMask = ~layerMask;
-
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3))
             {
                 transform.GetComponent<Interact>().ProcessInteract(hit.transform);
             }
@@ -47,6 +43,7 @@ public class Interact : MonoBehaviour
         {
             RaycastHit hit;
             bool didHit = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3);
+
             if (didHit && hit.transform.GetComponent<CharacterCombat>() != null)
             {
                 characterCombat.Attack(hit.transform.GetComponent<CharacterCombat>().myStats);

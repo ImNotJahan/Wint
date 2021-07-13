@@ -15,5 +15,6 @@ MonoBehaviour:
   gameItem: {fileID: 7771427464804316225, guid: 20bccfa2d3b465f448ef67e3084661e1,
     type: 3}
   item_id: sword
-  description: A sharp weapon
+  description: spord
   count: 1
+  rarity: 0.1

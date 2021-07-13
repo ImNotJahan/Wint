@@ -17,3 +17,4 @@ MonoBehaviour:
   item_id: horn
   description: A pointy thing coming out of a head
   count: 1
+  rarity: 0.2

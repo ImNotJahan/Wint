@@ -104,8 +104,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     public void die()
     {
-        characterStats = new CharacterStats();
-        characterStats.movementScript = this;
+        CharacterStats.currentPlayerInstance = new CharacterStats();
+        CharacterStats.currentPlayerInstance.movementScript = this;
 
         transform.position = spawnpoints[Random.Range(0, spawnpoints.Count - 1)];
     }

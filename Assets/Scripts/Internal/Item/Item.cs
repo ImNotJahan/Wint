@@ -8,4 +8,5 @@ public class Item : ScriptableObject
     public string description;
 
     public int count;
+    public float rarity;
 }

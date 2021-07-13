@@ -30,9 +30,19 @@ public class CharacterCombat : MonoBehaviour
     {
         if (myStats.dropItemsOnDeath)
         {
-            foreach(Item item in myStats.inventory)
+            Vector3 pos = transform.position + new Vector3(0, 1, 0);
+            if (equipped != null)
             {
-                Instantiate(item.gameItem).transform.position = transform.position;
+                Weapon weapon = equipped.GetChild(0).GetComponent<Weapon>();
+                Instantiate(weapon).transform.position = pos;
+            }
+
+            foreach (Item item in myStats.inventory)
+            {
+                if (Random.Range(0f, 1f) <= item.rarity)
+                {
+                    Instantiate(item.gameItem).transform.position = pos;
+                }
             }
         }
         Destroy(gameObject);
