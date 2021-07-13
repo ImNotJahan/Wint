@@ -30,6 +30,7 @@ public class CharacterStats
 
     public List<Item> inventory = new List<Item>();
     public List<Quest> log = new List<Quest>();
+    public List<string> achievements = new List<string>();
 
     public bool dropItemsOnDeath = false;
     public bool isMonster = true;

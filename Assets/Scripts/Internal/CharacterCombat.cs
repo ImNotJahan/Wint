@@ -52,6 +52,9 @@ public class CharacterCombat : MonoBehaviour
                 }
             }
         }
+
+        AchievementHandler.entityDeath.Invoke(new string[] { myStats.entityId });
+
         Destroy(gameObject);
     }
 

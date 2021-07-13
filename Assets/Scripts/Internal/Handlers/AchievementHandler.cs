@@ -1,18 +1,49 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AchievementHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static ParamEvent entityDeath = new ParamEvent();
+    public static ParamEvent achievementAdded = new ParamEvent();
+
+    public GameObject achievementPopup;
+    public Text achievementText;
+    public Image achievementImage;
+
+    private void Awake()
     {
-        
+        entityDeath.AddListener(EntityDeath);
+        achievementAdded.AddListener((string[] args) => { StartCoroutine(AchievementAdded(args[0])); } );
     }
 
-    // Update is called once per frame
-    void Update()
+    private void EntityDeath(string[] args)
     {
-        
+        if(args.Length > 0)
+        {
+            switch (args[0])
+            {
+                case "minotaur":
+                    CharacterStats.currentPlayerInstance.achievements.Add("The Meaning of Adventure");
+                    achievementAdded.Invoke(new string[] { "The Meaning of Adventure" });
+                    break;
+            }
+        }
+    }
+
+    private IEnumerator AchievementAdded(string title)
+    {
+        string achievementId = title.ToLower();
+        achievementId = new Regex("^a-z").Replace(achievementId, "");
+        achievementId = achievementId.Replace(" ", "_");
+
+        achievementText.text = title;
+        achievementImage.sprite = Resources.Load<Sprite>("Textures/achievements/" + achievementId);
+        achievementPopup.SetActive(true);
+
+        yield return new WaitForSeconds(4);
+
+        achievementPopup.SetActive(false);
     }
 }
