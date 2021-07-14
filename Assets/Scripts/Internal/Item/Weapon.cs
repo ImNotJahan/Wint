@@ -6,6 +6,8 @@ public class Weapon : PickableItem
     public string weaponId;
     public Animation anim;
 
+    public GameObject bloodEffect;
+
     public int baseDamage = 10;
     public int variation = 3;
     public float attackSpeed = 1f;
@@ -28,17 +30,20 @@ public class Weapon : PickableItem
     {
         this.damage = damage;
         time = 0;
-        Debug.Log(5);
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(time);
         if (time <= attackSpeed)
         {
             CharacterStats targetStats = collision.transform.GetComponent<CharacterCombat>().myStats;
-            Debug.Log(targetStats);
-            if (targetStats != null) targetStats.TakeDamage(damage);
+            if (targetStats != null)
+            {
+                targetStats.TakeDamage(damage);
+
+                Vector3 pos = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+                Instantiate(bloodEffect, pos, Quaternion.identity, collision.transform);
+            }
         }
     }
 
