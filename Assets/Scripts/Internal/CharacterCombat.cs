@@ -21,14 +21,17 @@ public class CharacterCombat : MonoBehaviour
     {
         if(attackCooldown <= 0)
         {
-            if (myStats.weapon == null) attackCooldown = myStats.attackSpeed;
-            else attackCooldown = myStats.weapon.attackSpeed;
 
-            StartCoroutine(AttackFinished(myStats.damageSpeed));
+            attackCooldown = myStats.attackSpeed;
 
             if (!string.IsNullOrEmpty(myStats.equipedWeapon))
             {
-                equipped.GetChild(0).GetComponent<Weapon>().anim.Play();
+                Weapon weapon = equipped.GetChild(0).GetComponent<Weapon>();
+                weapon.Attack(myStats.AttackPower());
+                weapon.anim.Stop();
+                weapon.anim.Play();
+
+                attackCooldown = weapon.attackSpeed;
             }
         }
     }
@@ -74,18 +77,6 @@ public class CharacterCombat : MonoBehaviour
             {
                 cooldownBar.SetActive(false);
             }
-        }
-    }
-
-    IEnumerator AttackFinished(float length)
-    {
-        yield return new WaitForSeconds(length);
-
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3))
-        {
-            CharacterStats targetStats = hit.transform.GetComponent<CharacterCombat>().myStats;
-            if (targetStats != null) targetStats.TakeDamage(myStats.AttackPower());
         }
     }
 }

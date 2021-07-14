@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.2264151, g: 0.0758277, b: 0.17995404, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.95
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: e391f00234292cc4f935308c11cf0e54, type: 2}
   m_HaloStrength: 0.5
@@ -7667,7 +7667,7 @@ BoxCollider:
   m_GameObject: {fileID: 1747665865}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 43.078266, z: 1.0000002}
   m_Center: {x: 0.000000076293944, y: 20.539133, z: -0.000000076293944}
@@ -9018,7 +9018,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149032003816}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4916543f7edc8454b8e7f89e68be136e, type: 3}
   m_Name: 
@@ -10069,6 +10069,16 @@ PrefabInstance:
         type: 3}
       propertyPath: baseDamage
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771427464804316230, guid: 20bccfa2d3b465f448ef67e3084661e1,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.018654186
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771427464804316230, guid: 20bccfa2d3b465f448ef67e3084661e1,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.006296705
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20bccfa2d3b465f448ef67e3084661e1, type: 3}

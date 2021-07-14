@@ -10,8 +10,10 @@ public class Weapon : PickableItem
     public int variation = 3;
     public float attackSpeed = 1f;
 
-    public WeaponType type = WeaponType.Slicing;
     public bool magic = false;
+
+    private int damage = 0;
+    private float time = 0;
 
     public override void PickUp(Collider collider)
     {
@@ -21,12 +23,27 @@ public class Weapon : PickableItem
         transform.rotation.Set(90, 0, 0, 0);
         transform.localPosition = Vector3.zero;
     }
-}
 
-public enum WeaponType
-{
-    Slicing,
-    Stabbing,
-    Short,
-    Blunt
+    public void Attack(int damage)
+    {
+        this.damage = damage;
+        time = 0;
+        Debug.Log(5);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        Debug.Log(time);
+        if (time <= attackSpeed)
+        {
+            CharacterStats targetStats = collision.transform.GetComponent<CharacterCombat>().myStats;
+            Debug.Log(targetStats);
+            if (targetStats != null) targetStats.TakeDamage(damage);
+        }
+    }
+
+    private void Update()
+    {
+        time += Time.deltaTime;
+    }
 }
