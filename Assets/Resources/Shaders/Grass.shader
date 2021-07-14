@@ -1,8 +1,8 @@
 ﻿Shader "Custom/Grass"
 {
 	Properties{
-			_Color("Colour", Color) = (0.2,0.8,0.5,1)
-			_Color2("Colour2", Color) = (0.5,0.9,0.6,1)
+			_Color("Color", Color) = (0.2,0.8,0.5,1)
+			_Color2("Color2", Color) = (0.5,0.9,0.6,1)
 			_Width("Width", Float) = 0.1
 			_Height("Height", Float) = 0.8
 			_RandomWidth("Random Width", Float) = 0.1

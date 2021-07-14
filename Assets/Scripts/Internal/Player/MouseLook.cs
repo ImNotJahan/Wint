@@ -35,37 +35,6 @@ public class MouseLook : MonoBehaviour
 
             playerBody.Rotate(Vector3.up * mouseX);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-     /*else if (Input.GetKeyUp(KeyCode.V))
-        {
-            if (!status.activeSelf)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                Time.timeScale = 0;
-
-                StringBuilder statusString = new StringBuilder("", 100);
-                statusString.AppendFormat(defaultStatus, PlayerData.strength, PlayerData.endurance,
-                    PlayerData.dexterity, PlayerData.agility, PlayerData.magic);
-
-                status.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = statusString.ToString().Replace("\\n", "\n");
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                Time.timeScale = 1;
-            }
-            status.SetActive(!status.activeSelf);
-        }*/
-            if (Input.GetKeyDown(IniFiles.Keybinds.style))
-            {
-                styles.SetActive(true);
-            }
-            else if (Input.GetKeyUp(IniFiles.Keybinds.style))
-            {
-                styles.SetActive(false);
-            }
         }
     }
 

@@ -41,8 +41,8 @@ public class Weapon : PickableItem
             {
                 targetStats.TakeDamage(damage);
 
-                Vector3 pos = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-                Instantiate(bloodEffect, pos, Quaternion.identity, collision.transform);
+                //Vector3 pos = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+                //Instantiate(bloodEffect, pos, Quaternion.identity, collision.transform);
             }
         }
     }

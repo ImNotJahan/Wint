@@ -16,7 +16,7 @@ public class LocalHealthbar : MonoBehaviour
 
     private void onTakeDamage(string[] args)
     {
-        healthbar.fillAmount = stats.health / stats.maxHealth; 
+        healthbar.fillAmount = (float)stats.health / stats.maxHealth; 
     }
 
     private void OnMenuChange(string[] args)
