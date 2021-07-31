@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Fist : MonoBehaviour
 {
@@ -17,10 +15,6 @@ public class Fist : MonoBehaviour
         if (targetStats != null)
         {
             targetStats.TakeDamage(damage);
-
-            //Vector3 pos = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-            //Instantiate(bloodEffect, pos, Quaternion.identity, collision.transform);
-            //Instantiate(bloodEffect, pos, Quaternion.identity, collision.transform);
         }
     }
 }
