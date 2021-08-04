@@ -120,11 +120,12 @@ MonoBehaviour:
   onGround: 1
   weaponId: sword
   anim: {fileID: 7771427464804316229}
+  bloodEffect: {fileID: 0}
   baseDamage: 10
   variation: 3
   attackSpeed: 1
-  type: 0
   magic: 0
+  strengths: 01000000
 --- !u!65 &7771427464804316230
 BoxCollider:
   m_ObjectHideFlags: 0

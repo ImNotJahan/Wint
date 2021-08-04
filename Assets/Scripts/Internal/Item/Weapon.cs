@@ -17,6 +17,8 @@ public class Weapon : PickableItem
     private int damage = 0;
     private float time = 0;
 
+    public Element[] strengths;
+
     public override void PickUp(Collider collider)
     {
         base.PickUp(collider);

@@ -33,7 +33,7 @@ public class Biomes : MonoBehaviour
                     {
                         if (drunkPos.x > 0)
                         {
-                            drunkPos
+                            
                         }
                         chance -= 0.02f;
                     }

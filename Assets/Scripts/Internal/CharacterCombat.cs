@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class CharacterCombat : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class CharacterCombat : MonoBehaviour
     private float attackCooldown = 0;
     public GameObject cooldownBar;
     private Image cooldownBarImage;
+
+    public Element[] strengths;
+    public Element[] weaknesses;
 
     private void Start()
     {
@@ -27,7 +31,20 @@ public class CharacterCombat : MonoBehaviour
             if (!string.IsNullOrEmpty(myStats.equipedWeapon))
             {
                 Weapon weapon = equipped.GetChild(0).GetComponent<Weapon>();
-                weapon.Attack(myStats.AttackPower());
+
+                float multiplier = 1;
+                foreach(Element strength in weapon.strengths)
+                {
+                    if (strengths.Contains(strength))
+                    {
+                        multiplier -= .5f;
+                    } else if (weaknesses.Contains(strength))
+                    {
+                        multiplier += .5f;
+                    }
+                }
+
+                weapon.Attack((int)(myStats.AttackPower() * multiplier));
                 weapon.anim.Stop();
                 weapon.anim.Play();
 
@@ -79,4 +96,11 @@ public class CharacterCombat : MonoBehaviour
             }
         }
     }
+}
+
+public enum Element
+{
+    Wood,
+    Metal,
+    Magic
 }

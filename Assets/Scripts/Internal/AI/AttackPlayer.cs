@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterCombat))]
 public class AttackPlayer : MonoBehaviour
 {
     Transform target;
