@@ -5,6 +5,7 @@ using UnityEngine;
 public class MeshGenerator : MonoBehaviour
 {
     public GameObject tree;
+    public GameObject rock;
 
     [SerializeField] float heightMultiplier = 1;
     [SerializeField] int size = 100;
@@ -50,34 +51,41 @@ public class MeshGenerator : MonoBehaviour
             }
         }
 
-        float[,] blueNoise = Noise.Generate(size + 6, seed, scale, 1, persistance, lacunarity, offset);
+        float[,] treeNoise = Noise.Generate(size + 1, seed + 6, scale, 1, persistance, lacunarity, offset);
+        float[,] rockNoise = Noise.Generate(size + 1, seed + 7, scale, 1, persistance, lacunarity, offset);
 
         //I don't understand what happens here
-        for (int yc = 0; yc < size; yc++)
+        void PlaceThings(float[,] blueNoise, GameObject thing, int density)
         {
-            for (int xc = 0; xc < size; xc++)
+            for (int yc = 0; yc < size; yc++)
             {
-                double max = 0;
-
-                int R = 4;
-
-                for (int yn = yc - R; yn <= yc + R; yn++)
+                for (int xc = 0; xc < size; xc++)
                 {
-                    for (int xn = xc - R; xn <= xc + R; xn++)
+                    double max = 0;
+
+                    int R = density;
+
+                    for (int yn = yc - R; yn <= yc + R; yn++)
                     {
-                        if (0 <= yn && yn < size && 0 <= xn && xn < size)
+                        for (int xn = xc - R; xn <= xc + R; xn++)
                         {
-                            double e = blueNoise[xn, yn];
-                            if (e > max) max = e;
+                            if (0 <= yn && yn < size && 0 <= xn && xn < size)
+                            {
+                                double e = blueNoise[xn, yn];
+                                if (e > max) max = e;
+                            }
                         }
                     }
-                }
-                if (blueNoise[xc, yc] == max)
-                {
-                    Instantiate(tree, new Vector3(xc, heightMap[xc, yc] * heightMultiplier + 1, yc), tree.transform.rotation);
+                    if (blueNoise[xc, yc] == max)
+                    {
+                        Instantiate(thing, new Vector3(xc, heightMap[xc, yc] * heightMultiplier + 1, yc), tree.transform.rotation);
+                    }
                 }
             }
         }
+
+        PlaceThings(treeNoise, tree, 4);
+        PlaceThings(rockNoise, rock, 4);
 
         int[] triangles = new int[size * size * 6];
 
