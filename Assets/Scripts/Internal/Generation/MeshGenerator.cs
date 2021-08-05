@@ -5,9 +5,10 @@ using UnityEngine;
 public class MeshGenerator : MonoBehaviour
 {
     [SerializeField] float heightMultiplier = 1;
-    [SerializeField] public static int size = 100;
-    [SerializeField] public static int seed = 42;
+    [SerializeField] int size = 100;
+    [SerializeField] int seed = 42;
     [SerializeField] float scale = 1;
+    [SerializeField] float biomeScale = 1;
     [SerializeField] int octaves = 1;
     [SerializeField] float persistance = 1;
     [SerializeField] float lacunarity = 1;
@@ -29,8 +30,8 @@ public class MeshGenerator : MonoBehaviour
     {
         //noise maps
         float[,] noiseMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
-        float[,] mountainMap = Noise.Generate(size + 1, seed + 1, scale * 1000, octaves, persistance, lacunarity, offset);
-        float[,] lakeMap = Noise.Generate(size + 1, seed + 2, scale, octaves, persistance, lacunarity, offset);
+
+        float[,] biomeMap = Noise.Generate(size + 1, seed + 3, biomeScale, 2, persistance, lacunarity, offset);
 
         Color[] colors = new Color[(int)Mathf.Pow(size + 1, 2)];
         Vector3[] vertices = new Vector3[(int)Mathf.Pow(size + 1, 2)];
@@ -39,15 +40,10 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= size; x++)
             {
-                float trueY = noiseMap[x, y] * heightMultiplier; //this is for the vertex's y
+                int g = Mathf.Min(Mathf.RoundToInt(biomeMap[x, y] * 10), 9);
 
-                if (mountainMap[x, y] > 0.2)
-                {
-                    trueY += mountainMap[x, y] * 10 * heightMultiplier;
-                }
-
-                vertices[k] = new Vector3(x, trueY, y);
-                colors[k] = gradients[0].Evaluate(vertices[k].y / heightMultiplier);
+                vertices[k] = new Vector3(x, noiseMap[x, y] * heightMultiplier, y);
+                colors[k] = gradients[g].Evaluate(vertices[k].y / heightMultiplier);
                 k++;
             }
         }
@@ -72,37 +68,12 @@ public class MeshGenerator : MonoBehaviour
             v++;
         }
 
-        
-
-        Vector3[] biomeVertices = vertices;
-
-        int amountOfIterations = 1;
-        int g = Random.Range(0, gradients.Length - 1);
-
-        Vector2 startingPoint = new Vector2(10, 10);
-
-        /*for (int i = 0; i < amountOfIterations; i++)
+        Mesh mesh = new Mesh
         {
-            for (int k = 0, y = 0; y < size + 1; y++)
-            {
-                for (int x = 0; x < size + 1; x++)
-                {
-                    if (Mathf.Pow(x - startingPoint.x, 2) + Mathf.Pow(y - startingPoint.y, 2) <= Mathf.Pow(2, 2)
-                        && biomeVertices[k].y != 2)
-                    {
-                        //TODO choose gradient using a seed or something to have repeatable results
-                        colors[k] = gradients[g].Evaluate(biomeVertices[k].y / heightMultiplier);
-                        //biomeVertices[k].y = 2;
-                        k++;
-                    }
-                }
-            }
-        }*/
-
-        Mesh mesh = new Mesh();
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.colors = colors;
+            vertices = vertices,
+            triangles = triangles,
+            colors = colors
+        };
 
         return mesh;
     }
@@ -135,9 +106,6 @@ public class MapGeneratorEditor : Editor
         {
             meshGen.DrawMapInEditor();
         }
-
-        MeshGenerator.size = EditorGUILayout.IntField(MeshGenerator.size);
-        MeshGenerator.seed = EditorGUILayout.IntField(MeshGenerator.seed);
 
         if (GUILayout.Button("Generate"))
         {
