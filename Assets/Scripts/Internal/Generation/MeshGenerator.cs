@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter))]
 public class MeshGenerator : MonoBehaviour
 {
+    public GameObject tree;
+
     [SerializeField] float heightMultiplier = 1;
     [SerializeField] int size = 100;
     [SerializeField] int seed = 42;
@@ -29,9 +31,9 @@ public class MeshGenerator : MonoBehaviour
     private Mesh GenerateMeshOnly()
     {
         //noise maps
-        float[,] noiseMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
+        float[,] heightMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
 
-        float[,] biomeMap = Noise.Generate(size + 1, seed + 3, biomeScale, 2, persistance, lacunarity, offset);
+        float[,] moistureMap = Noise.Generate(size + 1, seed + 3, biomeScale, 2, persistance, lacunarity, offset);
 
         Color[] colors = new Color[(int)Mathf.Pow(size + 1, 2)];
         Vector3[] vertices = new Vector3[(int)Mathf.Pow(size + 1, 2)];
@@ -40,11 +42,40 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= size; x++)
             {
-                int g = Mathf.Min(Mathf.RoundToInt(biomeMap[x, y] * 10), 9);
+                int g = Mathf.Min(Mathf.RoundToInt(moistureMap[x, y] * 10), 9);
 
-                vertices[k] = new Vector3(x, noiseMap[x, y] * heightMultiplier, y);
+                vertices[k] = new Vector3(x, heightMap[x, y] * heightMultiplier, y);
                 colors[k] = gradients[g].Evaluate(vertices[k].y / heightMultiplier);
                 k++;
+            }
+        }
+
+        float[,] blueNoise = Noise.Generate(size + 6, seed, scale, 1, persistance, lacunarity, offset);
+
+        //I don't understand what happens here
+        for (int yc = 0; yc < size; yc++)
+        {
+            for (int xc = 0; xc < size; xc++)
+            {
+                double max = 0;
+
+                int R = 4;
+
+                for (int yn = yc - R; yn <= yc + R; yn++)
+                {
+                    for (int xn = xc - R; xn <= xc + R; xn++)
+                    {
+                        if (0 <= yn && yn < size && 0 <= xn && xn < size)
+                        {
+                            double e = blueNoise[xn, yn];
+                            if (e > max) max = e;
+                        }
+                    }
+                }
+                if (blueNoise[xc, yc] == max)
+                {
+                    Instantiate(tree, new Vector3(xc, heightMap[xc, yc] * heightMultiplier + 1, yc), tree.transform.rotation);
+                }
             }
         }
 
@@ -97,12 +128,14 @@ public class MeshGenerator : MonoBehaviour
 [CustomEditor(typeof(MeshGenerator))]
 public class MapGeneratorEditor : Editor
 {
-
+    bool autoupdate = false;
     public override void OnInspectorGUI()
     {
         MeshGenerator meshGen = (MeshGenerator)target;
 
-        if (DrawDefaultInspector())
+        EditorGUILayout.Toggle(autoupdate);
+
+        if (DrawDefaultInspector() && autoupdate)
         {
             meshGen.DrawMapInEditor();
         }
