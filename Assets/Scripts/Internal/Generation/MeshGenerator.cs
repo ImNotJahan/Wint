@@ -4,8 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter))]
 public class MeshGenerator : MonoBehaviour
 {
-    public GameObject tree;
+    public GameObject[] trees;
     public GameObject rock;
+
+    public bool shouldPlace = false;
 
     [SerializeField] float heightMultiplier = 1;
     [SerializeField] int size = 100;
@@ -17,7 +19,9 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField] float lacunarity = 1;
     [SerializeField] Vector2 offset = new Vector2();
 
-    [SerializeField] Gradient[] gradients = new Gradient[3];
+    [SerializeField] Gradient gradient = new Gradient();
+
+    Transform parent;
 
     Mesh map;
 
@@ -31,6 +35,11 @@ public class MeshGenerator : MonoBehaviour
 
     private Mesh GenerateMeshOnly()
     {
+        if(parent == null)
+        {
+            parent = new GameObject().transform;
+        }
+
         //noise maps
         float[,] heightMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
 
@@ -43,10 +52,8 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= size; x++)
             {
-                int g = Mathf.Min(Mathf.RoundToInt(moistureMap[x, y] * 10), 9);
-
                 vertices[k] = new Vector3(x, heightMap[x, y] * heightMultiplier, y);
-                colors[k] = gradients[g].Evaluate(vertices[k].y / heightMultiplier);
+                colors[k] = gradient.Evaluate(moistureMap[x, y]);
                 k++;
             }
         }
@@ -55,7 +62,7 @@ public class MeshGenerator : MonoBehaviour
         float[,] rockNoise = Noise.Generate(size + 1, seed + 7, scale, 1, persistance, lacunarity, offset);
 
         //I don't understand what happens here
-        void PlaceThings(float[,] blueNoise, GameObject thing, int density)
+        void PlaceThings(float[,] blueNoise, GameObject[] things, int density, int bMin, int bMax)
         {
             for (int yc = 0; yc < size; yc++)
             {
@@ -78,14 +85,27 @@ public class MeshGenerator : MonoBehaviour
                     }
                     if (blueNoise[xc, yc] == max)
                     {
-                        Instantiate(thing, new Vector3(xc, heightMap[xc, yc] * heightMultiplier + 1, yc), tree.transform.rotation);
+                        int g = Mathf.Min(Mathf.RoundToInt(moistureMap[xc, yc] * 10), 9);
+                        
+                        if(g >= bMin && g <= bMax)
+                        {
+                            Instantiate(things[g - bMin], new Vector3(xc, heightMap[xc, yc] * heightMultiplier + 1, yc), things[0].transform.rotation, parent);
+                        }
                     }
                 }
             }
         }
 
-        PlaceThings(treeNoise, tree, 4);
-        PlaceThings(rockNoise, rock, 4);
+        foreach(Transform item in parent)
+        {
+            DestroyImmediate(item.gameObject, true);
+        }
+
+        if (shouldPlace)
+        {
+            PlaceThings(treeNoise, trees, 4, 3, 7);
+            //PlaceThings(rockNoise, rocks, 4);
+        }
 
         int[] triangles = new int[size * size * 6];
 
@@ -133,24 +153,26 @@ public class MeshGenerator : MonoBehaviour
     }
 }
 
-[CustomEditor(typeof(MeshGenerator))]
-public class MapGeneratorEditor : Editor
-{
-    bool autoupdate = false;
-    public override void OnInspectorGUI()
+#if UNITY_EDITOR
+    [CustomEditor(typeof(MeshGenerator))]
+    public class MapGeneratorEditor : Editor
     {
-        MeshGenerator meshGen = (MeshGenerator)target;
-
-        EditorGUILayout.Toggle(autoupdate);
-
-        if (DrawDefaultInspector() && autoupdate)
+        bool autoupdate = false;
+        public override void OnInspectorGUI()
         {
-            meshGen.DrawMapInEditor();
-        }
+            MeshGenerator meshGen = (MeshGenerator)target;
 
-        if (GUILayout.Button("Generate"))
-        {
-            meshGen.DrawMapInEditor();
+            EditorGUILayout.Toggle(autoupdate);
+
+            if (DrawDefaultInspector() && autoupdate)
+            {
+                meshGen.DrawMapInEditor();
+            }
+
+            if (GUILayout.Button("Generate"))
+            {
+                meshGen.DrawMapInEditor();
+            }
         }
     }
-}
+#endif
