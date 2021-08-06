@@ -1,12 +1,10 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
 public class MeshGenerator : MonoBehaviour
 {
-    public GameObject[] trees;
-    public GameObject rock;
-
     public bool shouldPlace = false;
 
     [SerializeField] float heightMultiplier = 1;
@@ -17,9 +15,12 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField] int octaves = 1;
     [SerializeField] float persistance = 1;
     [SerializeField] float lacunarity = 1;
+    [SerializeField] float exponent = 1;
     [SerializeField] Vector2 offset = new Vector2();
 
     [SerializeField] Gradient gradient = new Gradient();
+
+    public PlaceableObject[] objects;
 
     Transform parent;
 
@@ -42,7 +43,16 @@ public class MeshGenerator : MonoBehaviour
 
         //noise maps
         float[,] heightMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
+        /*float[,] voronoiDiagram = Voronoi.GetDiagramByDistance();
 
+        for(int y = 0; y < size; y++)
+        {
+            for(int x = 0; x < size; x++)
+            {
+                heightMap[x, y] = heightMap[x, y] * (2f/3f) + voronoiDiagram[x, y] * (1f/3f);
+            }
+        }
+        */
         float[,] moistureMap = Noise.Generate(size + 1, seed + 3, biomeScale, 2, persistance, lacunarity, offset);
 
         Color[] colors = new Color[(int)Mathf.Pow(size + 1, 2)];
@@ -52,17 +62,14 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= size; x++)
             {
-                vertices[k] = new Vector3(x, heightMap[x, y] * heightMultiplier, y);
+                vertices[k] = new Vector3(x, Mathf.Pow(heightMap[x, y] * heightMultiplier, exponent), y);
                 colors[k] = gradient.Evaluate(moistureMap[x, y]);
                 k++;
             }
         }
 
-        float[,] treeNoise = Noise.Generate(size + 1, seed + 6, scale, 1, persistance, lacunarity, offset);
-        float[,] rockNoise = Noise.Generate(size + 1, seed + 7, scale, 1, persistance, lacunarity, offset);
-
         //I don't understand what happens here
-        void PlaceThings(float[,] blueNoise, GameObject[] things, int density, int bMin, int bMax)
+        void PlaceThings(float[,] blueNoise, GameObject[] things, int density, int bMin, int bMax, float shrinkSize)
         {
             for (int yc = 0; yc < size; yc++)
             {
@@ -89,7 +96,8 @@ public class MeshGenerator : MonoBehaviour
                         
                         if(g >= bMin && g <= bMax)
                         {
-                            Instantiate(things[g - bMin], new Vector3(xc, heightMap[xc, yc] * heightMultiplier + 1, yc), things[0].transform.rotation, parent);
+                            Instantiate(things[g - bMin], new Vector3(xc, heightMap[xc, yc] * heightMultiplier + 1, yc), 
+                                things[0].transform.rotation, parent);
                         }
                     }
                 }
@@ -103,8 +111,11 @@ public class MeshGenerator : MonoBehaviour
 
         if (shouldPlace)
         {
-            PlaceThings(treeNoise, trees, 4, 3, 7);
-            //PlaceThings(rockNoise, rocks, 4);
+            foreach(PlaceableObject item in objects)
+            {
+                float[,] noise = Noise.Generate(size + 1, seed + 808 + item.seed, scale, 1, persistance, lacunarity, offset);
+                PlaceThings(noise, item.objects, item.density, item.min, item.max, item.shrinkSize);
+            }
         }
 
         int[] triangles = new int[size * size * 6];
@@ -153,6 +164,17 @@ public class MeshGenerator : MonoBehaviour
     }
 }
 
+[Serializable]
+public class PlaceableObject
+{
+    public GameObject[] objects;
+    public int min;
+    public int max;
+    public int density;
+    public int seed;
+    public float shrinkSize;
+}
+
 #if UNITY_EDITOR
     [CustomEditor(typeof(MeshGenerator))]
     public class MapGeneratorEditor : Editor
@@ -162,7 +184,7 @@ public class MeshGenerator : MonoBehaviour
         {
             MeshGenerator meshGen = (MeshGenerator)target;
 
-            EditorGUILayout.Toggle(autoupdate);
+            autoupdate = EditorGUILayout.Toggle("Autoupdate", autoupdate);
 
             if (DrawDefaultInspector() && autoupdate)
             {

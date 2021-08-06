@@ -62,7 +62,6 @@
 		#include "Assets/Resources/Shaders/Tessellation.hlsl"
 
 		// Fragment
-
 		float4 frag(GeometryOutput input, bool isFrontFace : SV_IsFrontFace) : SV_Target {
 			input.normalWS = isFrontFace ? input.normalWS : -input.normalWS;
 
@@ -74,7 +73,7 @@
 			#endif
 
 			float3 ambient = SampleSH(input.normalWS);
-
+			
 			Light mainLight = GetMainLight(shadowCoord);
 			float NdotL = saturate(saturate(dot(input.normalWS, mainLight.direction)) + 0.8);
 			float up = saturate(dot(float3(0,1,0), mainLight.direction) + 0.5);
@@ -83,7 +82,6 @@
 
 			return lerp(_Color, _Color2, input.uv.y) * float4(shading, 1);
 		}
-
 		ENDHLSL
 	}
 
