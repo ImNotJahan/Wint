@@ -9,7 +9,7 @@ namespace IniFiles
 {
     public class Keybinds : MonoBehaviour
     {
-        private static int version = 5;
+        private static int version = 6;
 
         //Movement
         public static string forward = "w";
@@ -21,8 +21,6 @@ namespace IniFiles
         public static string jump = "space";
 
         //Attacking
-        public static string focus = "f";
-        public static string style = "q";
         public static string interact = "e";
 
         //Multiplayer
@@ -34,7 +32,7 @@ namespace IniFiles
         public static string pause = "escape";
 
         private static string directorypath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
-                @"\Jahan Rashidi\Familia Game\Settings\";
+                @"\Jahan Rashidi\Wint\Settings\";
         public static void LoadKeybinds()
         {
             Ini keybinds = new Ini(directorypath + "Keybinds.ini");
@@ -52,9 +50,7 @@ namespace IniFiles
                 sprint = keybinds.Read("Sprint", "Movement");
                 jump = keybinds.Read("Jump", "Movement");
 
-                focus = keybinds.Read("Focus", "Attacking");
                 interact = keybinds.Read("Interact", "Attacking");
-                style = keybinds.Read("Style", "Attacking");
 
                 chat = keybinds.Read("Chat", "Multiplayer");
 
@@ -82,8 +78,6 @@ namespace IniFiles
             keybinds.Write("Sprint", sprint, "Movement");
             keybinds.Write("Jump", jump, "Movement");
 
-            keybinds.Write("Focus", focus, "Attacking");
-            keybinds.Write("Style", style, "Attacking");
             keybinds.Write("Interact", interact, "Attacking");
 
             keybinds.Write("Chat", chat, "Multiplayer");

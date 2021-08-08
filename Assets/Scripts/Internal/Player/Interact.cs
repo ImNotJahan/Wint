@@ -15,6 +15,7 @@ public class Interact : MonoBehaviour
     {
         if (hit.GetComponent<NPCBase>() != null)
         {
+            transform.LookAt(hit.GetComponent<NPCBase>().head);
             NPCInteract(hit.GetComponent<NPCBase>());
         }
     }
@@ -39,7 +40,7 @@ public class Interact : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && uihandler.menuIndex == 0)
         {
             characterCombat.Attack();
         }

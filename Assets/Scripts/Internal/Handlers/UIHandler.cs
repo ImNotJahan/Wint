@@ -9,24 +9,9 @@ public class UIHandler : MonoBehaviour
     private UnityEvent onEsc = new UnityEvent();
     public static ParamEvent onMenuChange = new ParamEvent();
 
-    private UnityAction[] setResponseId = new UnityAction[] { response0, response1, response2 };
-
     [SerializeField] private Text questAppearedText = null;
 
-    static void response0()
-    {
-        NPCBase.responseId2 = 0;
-    }
-
-    static void response1()
-    {
-        NPCBase.responseId2 = 1;
-    }
-
-    static void response2()
-    {
-        NPCBase.responseId2 = 2;
-    }
+    public int menuIndex = 0;
 
     private void Start()
     {
@@ -75,6 +60,8 @@ public class UIHandler : MonoBehaviour
 
     public void displayMessage(string message, string title, Arr responses, UnityAction call, NPCBase npc, int id)
     {
+        menuIndex = 1;
+
         dialogBox.SetActive(true);
         dialogBox.transform.GetChild(0).GetComponent<Text>().text = title;
         dialogBox.transform.GetChild(1).GetComponent<Text>().text = message;
@@ -88,10 +75,13 @@ public class UIHandler : MonoBehaviour
 
         for (int k = 0; k < responses.Length(); k++)
         {
+            int responseId = k;
+
             dialogButtons[k].SetActive(true);
             dialogButtons[k].transform.GetChild(0).GetComponent<Text>().text = responses[k];
             dialogButtons[k].GetComponent<Button>().onClick.RemoveAllListeners();
-            dialogButtons[k].GetComponent<Button>().onClick.AddListener(setResponseId[k]);
+            dialogButtons[k].GetComponent<Button>().onClick.AddListener(
+                () => { NPCBase.responseId2 = responseId; });
             dialogButtons[k].GetComponent<Button>().onClick.AddListener(call);
         }
 
@@ -104,6 +94,7 @@ public class UIHandler : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
+        menuIndex = 0;
 
         onEsc.RemoveListener(closeMessage);
     }

@@ -3,9 +3,11 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshCollider))]
 public class MeshGenerator : MonoBehaviour
 {
-    public bool shouldPlace = false;
+    [SerializeField] bool shouldPlace = false;
+    [SerializeField] bool shouldErode = false;
 
     [SerializeField] float heightMultiplier = 1;
     [SerializeField] int size = 100;
@@ -19,41 +21,26 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField] Vector2 offset = new Vector2();
 
     [SerializeField] Gradient gradient = new Gradient();
+    [SerializeField] AnimationCurve heightCurve = new AnimationCurve();
+
+    [SerializeField] const int erosionIterations = 1000;
 
     public PlaceableObject[] objects;
 
-    Transform parent;
-
-    Mesh map;
-
     private void Start()
     {
-        map = new Mesh();
-        GetComponent<MeshFilter>().sharedMesh = map;
-
         Generate();
     }
 
     private Mesh GenerateMeshOnly()
     {
-        if(parent == null)
-        {
-            parent = new GameObject().transform;
-        }
-
         //noise maps
-        float[,] heightMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
-        /*float[,] voronoiDiagram = Voronoi.GetDiagramByDistance();
+        float[] tempHeightMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
 
-        for(int y = 0; y < size; y++)
-        {
-            for(int x = 0; x < size; x++)
-            {
-                heightMap[x, y] = heightMap[x, y] * (2f/3f) + voronoiDiagram[x, y] * (1f/3f);
-            }
-        }
-        */
-        float[,] moistureMap = Noise.Generate(size + 1, seed + 3, biomeScale, 2, persistance, lacunarity, offset);
+        if(shouldErode) GetComponent<Erosion>().Erode(tempHeightMap, size, erosionIterations);
+
+        float[,] heightMap = Unflatten(tempHeightMap);
+        float[,] moistureMap = Unflatten(Noise.Generate(size + 1, seed + 3, biomeScale, 2, persistance, lacunarity, offset));
 
         Color[] colors = new Color[(int)Mathf.Pow(size + 1, 2)];
         Vector3[] vertices = new Vector3[(int)Mathf.Pow(size + 1, 2)];
@@ -96,15 +83,16 @@ public class MeshGenerator : MonoBehaviour
                         
                         if(g >= bMin && g <= bMax)
                         {
-                            Instantiate(things[g - bMin], new Vector3(xc, heightMap[xc, yc] * heightMultiplier + 1, yc), 
-                                things[0].transform.rotation, parent);
+                            Transform trans = Instantiate(things[g - bMin], new Vector3(xc, heightMap[xc, yc] * heightMultiplier + 1, yc), 
+                                things[0].transform.rotation).transform;
+                            trans.SetParent(transform, false);
                         }
                     }
                 }
             }
         }
 
-        foreach(Transform item in parent)
+        foreach(Transform item in transform)
         {
             DestroyImmediate(item.gameObject, true);
         }
@@ -113,7 +101,7 @@ public class MeshGenerator : MonoBehaviour
         {
             foreach(PlaceableObject item in objects)
             {
-                float[,] noise = Noise.Generate(size + 1, seed + 808 + item.seed, scale, 1, persistance, lacunarity, offset);
+                float[,] noise = Unflatten(Noise.Generate(size + 1, seed + 808 + item.seed, scale, 1, persistance, lacunarity, offset));
                 PlaceThings(noise, item.objects, item.density, item.min, item.max, item.shrinkSize);
             }
         }
@@ -150,17 +138,34 @@ public class MeshGenerator : MonoBehaviour
 
     private void Generate()
     {
+        //TODO add LOD especially for mesh, to reduce lag with chunks
         Mesh mesh = GenerateMeshOnly();
+        GetComponent<MeshFilter>().sharedMesh.Clear();
+        GetComponent<MeshFilter>().sharedMesh = mesh;
+        GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
 
-        map.Clear();
-        map = mesh;
-        map.RecalculateNormals();
+        GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 
     public void DrawMapInEditor()
     {
         GetComponent<MeshFilter>().sharedMesh = GenerateMeshOnly();
         GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
+    }
+
+    static float[,] Unflatten(float[] input)
+    {
+        int size = (int)Mathf.Sqrt(input.Length);
+        float[,] result = new float[size, size];
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                result[x, y] = input[y * size + x];
+            }
+        }
+
+        return result;
     }
 }
 

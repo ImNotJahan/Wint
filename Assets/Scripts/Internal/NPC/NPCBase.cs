@@ -1,20 +1,19 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using static MultidimensionalArray;
 
 public class NPCBase : MonoBehaviour
 {
     public string npcName;
-    public UIHandler uihandler;
+    [SerializeField] private UIHandler uihandler = null;
+
+    public Transform head;
 
     public ParamEvent onDialog = new ParamEvent();
 
     public string[] dialogs = new string[] { };
     public Arr[] responses = new Arr[] { };
 
-    [NonSerialized]
     public int responseId = 0;
-    [NonSerialized]
     public static int responseId2 = 0;
 
     /*How does this work?
