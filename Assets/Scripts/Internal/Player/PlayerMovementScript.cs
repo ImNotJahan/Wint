@@ -31,6 +31,8 @@ public class PlayerMovementScript : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        characterStats = GetComponent<CharacterCombat>().myStats;
+
         characterStats.movementScript = this;
 
         foreach(Transform spawn in GameObject.Find("spawnpoints").transform)

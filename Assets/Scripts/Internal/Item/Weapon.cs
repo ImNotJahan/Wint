@@ -21,7 +21,9 @@ public class Weapon : PickableItem
 
     public override void PickUp(Collider collider)
     {
-        base.PickUp(collider);
+        collider.GetComponent<CharacterCombat>().myStats.inventory.Add(item);
+        held = true;
+
         collider.GetComponent<CharacterCombat>().myStats.equipedWeapon = weaponId;
         transform.parent = collider.GetComponent<CharacterCombat>().equipped;
         transform.rotation.Set(90, 0, 0, 0);

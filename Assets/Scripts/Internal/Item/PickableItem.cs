@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickableItem : MonoBehaviour
 {
@@ -20,7 +18,7 @@ public class PickableItem : MonoBehaviour
         count = item.count;
     }
 
-    bool held = false;
+    protected bool held = false;
 
     public void OnTriggerStay(Collider collider)
     {
@@ -37,5 +35,6 @@ public class PickableItem : MonoBehaviour
     {
         collider.GetComponent<CharacterCombat>().myStats.inventory.Add(this.item);
         held = true;
+        Destroy(gameObject);
     }
 }
