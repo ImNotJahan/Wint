@@ -18,19 +18,14 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField] float persistance = 1;
     [SerializeField] float lacunarity = 1;
     [SerializeField] float exponent = 1;
-    [SerializeField] Vector2 offset = new Vector2();
+    public Vector2 offset = new Vector2();
 
     [SerializeField] Gradient gradient = new Gradient();
     [SerializeField] AnimationCurve heightCurve = new AnimationCurve();
 
-    [SerializeField] const int erosionIterations = 1000;
+    [SerializeField] int erosionIterations = 1000;
 
     public PlaceableObject[] objects;
-
-    private void Start()
-    {
-        Generate();
-    }
 
     private Mesh GenerateMeshOnly()
     {
@@ -136,11 +131,10 @@ public class MeshGenerator : MonoBehaviour
         return mesh;
     }
 
-    private void Generate()
+    public void Generate()
     {
         //TODO add LOD especially for mesh, to reduce lag with chunks
         Mesh mesh = GenerateMeshOnly();
-        GetComponent<MeshFilter>().sharedMesh.Clear();
         GetComponent<MeshFilter>().sharedMesh = mesh;
         GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
 

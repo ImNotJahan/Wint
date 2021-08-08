@@ -5,8 +5,8 @@ public static class Noise
     public static float[] Generate(int mapSize, int seed, float initialScale, int numOctaves, 
         float persistence, float lacunarity, Vector2 offset)
     {
-        var map = new float[mapSize * mapSize];
-        var prng = new System.Random(seed);
+        float[] map = new float[mapSize * mapSize];
+        System.Random prng = new System.Random(seed);
 
         Vector2[] offsets = new Vector2[numOctaves];
         for (int i = 0; i < numOctaves; i++)
@@ -26,8 +26,11 @@ public static class Noise
                 float weight = 1;
                 for (int i = 0; i < numOctaves; i++)
                 {
-                    Vector2 p = offsets[i] + new Vector2(x / (float)mapSize, y / (float)mapSize) * scale;
+                    Vector2 p = new Vector2((x + offsets[i].x) / mapSize * scale, 
+                        (y + offsets[i].y) / mapSize * scale);
+                    
                     noiseValue += Mathf.PerlinNoise(p.x, p.y) * weight;
+
                     weight *= persistence;
                     scale *= lacunarity;
                 }

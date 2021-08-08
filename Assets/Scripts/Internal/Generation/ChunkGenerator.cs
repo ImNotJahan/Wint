@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class ChunkGenerator : MonoBehaviour
 {
-    public const float maxViewDst = 450;
+    public GameObject chunk;
+
+    public const float maxViewDst = 300;
     public static Transform viewer;
 
     public static Vector2 viewerPosition;
@@ -53,7 +55,7 @@ public class ChunkGenerator : MonoBehaviour
                 }
                 else
                 {
-                    terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord, chunkSize, transform));
+                    terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord, chunkSize, transform, chunk));
                 }
 
             }
@@ -68,16 +70,20 @@ public class ChunkGenerator : MonoBehaviour
         Bounds bounds;
 
 
-        public TerrainChunk(Vector2 coord, int size, Transform parent)
+        public TerrainChunk(Vector2 coord, int size, Transform parent, GameObject chunk)
         {
             position = coord * size;
             bounds = new Bounds(position, Vector2.one * size);
             Vector3 positionV3 = new Vector3(position.x, 0, position.y);
 
-            meshObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            meshObject = Instantiate(chunk);
             meshObject.transform.position = positionV3;
-            meshObject.transform.localScale = Vector3.one * size / 10f;
             meshObject.transform.parent = parent;
+
+            chunk.GetComponent<MeshGenerator>().offset = new Vector2(position.x,
+                -position.y);
+            chunk.GetComponent<MeshGenerator>().Generate();
+
             SetVisible(false);
         }
 
