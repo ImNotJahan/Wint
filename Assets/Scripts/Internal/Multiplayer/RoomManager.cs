@@ -32,6 +32,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         {
             GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
             player.GetComponent<PlayerManager>().cooldownBar = cooldownBar;
+            ChunkGenerator.viewer = player.transform.GetChild(0);
         }
     }
 
