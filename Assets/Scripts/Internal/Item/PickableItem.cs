@@ -33,7 +33,7 @@ public class PickableItem : MonoBehaviour
 
     public virtual void PickUp(Collider collider)
     {
-        collider.GetComponent<CharacterCombat>().myStats.inventory.Add(this.item);
+        collider.GetComponent<CharacterCombat>().myStats.inventory.Add(item);
         held = true;
         Destroy(gameObject);
     }

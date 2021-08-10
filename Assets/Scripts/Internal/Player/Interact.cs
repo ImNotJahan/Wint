@@ -13,10 +13,17 @@ public class Interact : MonoBehaviour
 
     public void ProcessInteract(Transform hit)
     {
-        if (hit.GetComponent<NPCBase>() != null)
+        if (!hit.gameObject.isStatic)
         {
-            transform.LookAt(hit.GetComponent<NPCBase>().head);
-            NPCInteract(hit.GetComponent<NPCBase>());
+            if (hit.GetComponent<NPCBase>() != null)
+            {
+                transform.LookAt(hit.GetComponent<NPCBase>().head);
+                NPCInteract(hit.GetComponent<NPCBase>());
+            }
+            else if (hit.GetComponent<PickableItem>())
+            {
+                hit.GetComponent<PickableItem>().PickUp(transform.parent.GetComponent<Collider>());
+            }
         }
     }
 
