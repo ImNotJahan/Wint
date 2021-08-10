@@ -13,13 +13,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text objText = null;
     [SerializeField] private Transform obj = null;
 
+    [SerializeField] private DiscordController controller = null;
+
     private void Awake()
     {
         instance = this;
         objText.text = obj.GetComponent<PickableItem>().item.description;
         loading.SetActive(false);
 
-        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        scenesLoading.Add(SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive));
+
+        
     }
 
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
@@ -50,5 +54,15 @@ public class GameManager : MonoBehaviour
         }
 
         loading.SetActive(false);
+    }
+
+    IEnumerator LoadProgressMenu()
+    {
+        while (!scenesLoading[0].isDone)
+        {
+            yield return null;
+        }
+
+        controller.MenuLoaded();
     }
 }

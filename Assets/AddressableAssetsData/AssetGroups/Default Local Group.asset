@@ -17,8 +17,128 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 41347bc6a3652bc409ecde6945b989fc
   m_SerializeEntries:
+  - m_GUID: 092a0a794d7ffdd4f9ce5bb4136243a2
+    m_Address: Animation/Minotaur/Minotaur.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 9100000, guid: 092a0a794d7ffdd4f9ce5bb4136243a2, type: 2}
+    m_TargetAsset: {fileID: 9100000, guid: 092a0a794d7ffdd4f9ce5bb4136243a2, type: 2}
+  - m_GUID: 0cdbe926a2c058740a9d97e5d87ed4a7
+    m_Address: Animation/Minotaur/Punch.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: 0cdbe926a2c058740a9d97e5d87ed4a7, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: 0cdbe926a2c058740a9d97e5d87ed4a7, type: 2}
   - m_GUID: 101ef02d21dbc8e4e85ff920b8515583
     m_Address: Animation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 13ca99743c3dfa140988cf83342daa72
+    m_Address: Animation/Imp/Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: 13ca99743c3dfa140988cf83342daa72, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: 13ca99743c3dfa140988cf83342daa72, type: 2}
+  - m_GUID: 252b2378dc88042429bc286b19295d74
+    m_Address: Shaders
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 2e7771b14c61dcc47946048ef7a8e0fc
+    m_Address: Lightbox
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 655693bc7363d9643ba0591ffdb26e50
+    m_Address: Materials
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6859650785527ca4ab8be5bbe87a6812
+    m_Address: Animation/Minotaur/Death.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: 6859650785527ca4ab8be5bbe87a6812, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: 6859650785527ca4ab8be5bbe87a6812, type: 2}
+  - m_GUID: 6a6e6ccda6b31174c9fe908e7939cb4b
+    m_Address: Animation/Minotaur/Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: 6a6e6ccda6b31174c9fe908e7939cb4b, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: 6a6e6ccda6b31174c9fe908e7939cb4b, type: 2}
+  - m_GUID: 7270a63946fe5e74aab1b17ee28bb41f
+    m_Address: Prefabs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7b65f32864c87884da50c34cbee54e42
+    m_Address: Animation/Imp/Punch.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: 7b65f32864c87884da50c34cbee54e42, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: 7b65f32864c87884da50c34cbee54e42, type: 2}
+  - m_GUID: 86b808683006add46be89a8c5ec91fae
+    m_Address: Animation/Minotaur/Walking.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: 86b808683006add46be89a8c5ec91fae, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: 86b808683006add46be89a8c5ec91fae, type: 2}
+  - m_GUID: 89b5f779875d6d94294dd5b618d7c9b5
+    m_Address: Fonts
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 911407348789cd446aa5c2d545cff4d7
+    m_Address: Animation/Imp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: aa0e396a09581b0439ff585bd0b647b7
+    m_Address: Animation/Minotaur
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: adc50def9f1a02b46b98e7e4131336eb
+    m_Address: Animation/Minotaur/Roar.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: adc50def9f1a02b46b98e7e4131336eb, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: adc50def9f1a02b46b98e7e4131336eb, type: 2}
+  - m_GUID: adeb455fde5f01b41addd2da7352a877
+    m_Address: Textures
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c0f76197884fcf244af669d006ec1c8f
+    m_Address: Animation/Imp/Imp.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 9100000, guid: c0f76197884fcf244af669d006ec1c8f, type: 2}
+    m_TargetAsset: {fileID: 9100000, guid: c0f76197884fcf244af669d006ec1c8f, type: 2}
+  - m_GUID: c267d2354d3489645a1347e8131cce35
+    m_Address: Animation/Sword
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: c267d2354d3489645a1347e8131cce35, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: c267d2354d3489645a1347e8131cce35, type: 2}
+  - m_GUID: dddff30398d8c0f4e9a063f504e28b37
+    m_Address: Animation/Minotaur/Run.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: dddff30398d8c0f4e9a063f504e28b37, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: dddff30398d8c0f4e9a063f504e28b37, type: 2}
+  - m_GUID: f4cb6ee7769e818459b2bd6657ff4106
+    m_Address: Models
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

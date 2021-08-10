@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class DiscordJoinEvent : UnityEngine.Events.UnityEvent<string> { }
@@ -38,10 +39,23 @@ public class DiscordController : MonoBehaviour
         hasResponded.Invoke();
     }
 
+    DiscordRpc.DiscordUser user;
     public void ReadyCallback(ref DiscordRpc.DiscordUser connectedUser)
     {
         onConnect.Invoke();
         CheckPresence("Slaying Minotaurs");
+
+        user = connectedUser;
+        MenuLoaded();
+    }
+
+    public void MenuLoaded()
+    {
+        if (!string.IsNullOrEmpty(user.username))
+        {
+            GameObject.Find("Canvas/Multiplayer/UsernameInput").transform.GetChild(1)
+                .GetComponent<Text>().text = user.username;
+        }
     }
 
     public static void CheckPresence(string state)
@@ -91,7 +105,7 @@ public class DiscordController : MonoBehaviour
 
     void Start()
     {
-        timestamp = (int)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        timestamp = DateTime.UtcNow.Millisecond;
     }
 
     void Update()
