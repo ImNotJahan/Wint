@@ -18,6 +18,7 @@ public class Weapon : PickableItem
     private float time = 0;
 
     public Element[] strengths;
+    public ToolType toolType;
 
     public override void PickUp(Collider collider)
     {
@@ -40,19 +41,72 @@ public class Weapon : PickableItem
     {
         if (time <= attackSpeed)
         {
-            CharacterStats targetStats = collision.transform.GetComponent<CharacterCombat>().myStats;
-            if (targetStats != null)
+            CharacterCombat combat = collision.GetComponent<CharacterCombat>();
+            if (combat != null)
             {
-                targetStats.TakeDamage(damage);
+                combat.myStats.TakeDamage(Mathf.RoundToInt(damage + baseDamage * Evaluate(toolType, 0)));
 
                 //Vector3 pos = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
                 //Instantiate(bloodEffect, pos, Quaternion.identity, collision.transform);
+            } else if(collision.GetComponent<BreakableItem>() != null)
+            {
+                collision.GetComponent<BreakableItem>().Attack(Mathf.RoundToInt(damage + baseDamage * Evaluate(toolType, 1)));
             }
         }
+    }
+
+    private float Evaluate(ToolType toolType, int attacking)
+    {
+        switch (attacking)
+        {
+            case 0:
+                switch (toolType)
+                {
+                    case ToolType.Sword:
+                        return 1f;
+
+                    case ToolType.Axe:
+                        return 0.9f;
+
+                    case ToolType.Pickaxe:
+                        return 0.7f;
+
+                    case ToolType.Shovel:
+                        return 0.5f;
+                }
+                break;
+
+            case 1:
+                switch (toolType)
+                {
+                    case ToolType.Sword:
+                        return 0.3f;
+
+                    case ToolType.Axe:
+                        return 1f;
+
+                    case ToolType.Pickaxe:
+                        return 0.7f;
+
+                    case ToolType.Shovel:
+                        return 0.5f;
+                }
+                break;
+        }
+
+        return 0;
     }
 
     private void Update()
     {
         time += Time.deltaTime;
     }
+}
+
+public enum ToolType
+{
+    Sword,
+    Axe,
+    Pickaxe,
+    Shovel
 }

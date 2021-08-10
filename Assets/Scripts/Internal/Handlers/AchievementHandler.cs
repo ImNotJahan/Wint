@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
 public class AchievementHandler : MonoBehaviour
@@ -39,7 +40,6 @@ public class AchievementHandler : MonoBehaviour
         achievementId = achievementId.Replace(" ", "_");
 
         achievementText.text = title;
-        achievementImage.sprite = Resources.Load<Sprite>("Textures/achievements/" + achievementId);
         achievementPopup.SetActive(true);
 
         yield return new WaitForSeconds(4);
