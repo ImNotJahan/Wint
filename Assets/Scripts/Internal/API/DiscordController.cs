@@ -53,8 +53,8 @@ public class DiscordController : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(user.username))
         {
-            GameObject.Find("Canvas/Multiplayer/UsernameInput").transform.GetChild(1)
-                .GetComponent<Text>().text = user.username;
+            //GameObject.Find("Canvas/Multiplayer/UsernameInput").transform.GetChild(1)
+                //.GetComponent<Text>().text = user.username;
         }
     }
 
@@ -69,7 +69,7 @@ public class DiscordController : MonoBehaviour
         presence.endTimestamp = 0;
         presence.smallImageText = "ImNotJahan";
         presence.largeImageText = "Level 1";
-        presence.largeImageKey = "main";
+        presence.largeImageKey = "game_icon";
         presence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
         presence.partySize = amountOfPlayers;
         presence.partyMax = 5;
@@ -105,7 +105,7 @@ public class DiscordController : MonoBehaviour
 
     void Start()
     {
-        timestamp = DateTime.UtcNow.Millisecond;
+        timestamp = DateTime.UtcNow.Second;
     }
 
     void Update()

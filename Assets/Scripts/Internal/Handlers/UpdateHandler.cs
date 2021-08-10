@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -31,7 +32,7 @@ public class UpdateHandler : MonoBehaviour
 
             if (webRequest.isNetworkError)
             {
-                Debug.Log(pages[page] + ": Error: " + webRequest.error);
+                UnityEngine.Debug.Log(pages[page] + ": Error: " + webRequest.error);
             }
             else
             {
@@ -53,7 +54,7 @@ public class UpdateHandler : MonoBehaviour
     {
         if(data.changedScripts == 1)
         {
-
+            Process.Start(Application.dataPath + "/../Update.bat");
         }
     }
 }
