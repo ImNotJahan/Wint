@@ -11,7 +11,7 @@ public static class Noise
         Vector2[] offsets = new Vector2[numOctaves];
         for (int i = 0; i < numOctaves; i++)
         {
-            offsets[i] = new Vector2(prng.Next(-1000, 1000) + offset.x, prng.Next(-1000, 1000) - offset.y);
+            offsets[i] = new Vector2(prng.Next(-1000, 1000) + offset.x, prng.Next(-1000, 1000) + offset.y);
         }
 
         float minValue = float.MaxValue;

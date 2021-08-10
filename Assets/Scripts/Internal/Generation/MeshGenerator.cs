@@ -131,14 +131,14 @@ public class MeshGenerator : MonoBehaviour
         return mesh;
     }
 
-    public void Generate()
+    public void Generate(bool withCollider = true)
     {
         //TODO add LOD especially for mesh, to reduce lag with chunks
         Mesh mesh = GenerateMeshOnly();
         GetComponent<MeshFilter>().sharedMesh = mesh;
         GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
 
-        GetComponent<MeshCollider>().sharedMesh = mesh;
+        if(withCollider) GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 
     public void DrawMapInEditor()

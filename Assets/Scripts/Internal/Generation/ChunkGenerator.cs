@@ -74,14 +74,14 @@ public class ChunkGenerator : MonoBehaviour
         {
             position = coord * size;
             bounds = new Bounds(position, Vector2.one * size);
-            Vector3 positionV3 = new Vector3(position.x, 0, position.y);
+            Vector3 positionV3 = new Vector3(position.x, -30, position.y);
 
             meshObject = Instantiate(chunk);
             meshObject.transform.position = positionV3;
             meshObject.transform.parent = parent;
 
             chunk.GetComponent<MeshGenerator>().offset = new Vector2(position.x,
-                -position.y);
+                position.y);
             chunk.GetComponent<MeshGenerator>().Generate();
 
             SetVisible(false);

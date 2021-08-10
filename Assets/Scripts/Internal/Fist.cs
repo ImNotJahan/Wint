@@ -7,7 +7,6 @@ public class Fist : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.transform.root);
         if (collision.transform.root == transform.root)
             return;
 
