@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class BreakableItem : MonoBehaviour
 {
+    private void Awake()
+    {
+        GetComponent<AudioSource>().enabled = false;
+    }
+
     public int health = 50;
     public Element madeOf = Element.Wood;
     public GameObject drops;
@@ -11,6 +16,7 @@ public class BreakableItem : MonoBehaviour
     {
         health -= damage;
 
+        GetComponent<AudioSource>().enabled = true;
         GetComponent<AudioSource>().Play(0);
 
         if (health < 1)
@@ -24,8 +30,7 @@ public class BreakableItem : MonoBehaviour
         Instantiate(drops, transform.position, transform.rotation).SetActive(true);
 
         GetComponent<Renderer>().enabled = false;
-        GetComponents<Collider>()[0].enabled = false;
-        GetComponents<Collider>()[1].enabled = false;
+        GetComponent<Collider>().enabled = false;
 
         StartCoroutine(DestroyAfterAudio());
     }

@@ -47,6 +47,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
             currentSpeed = speed;
+            GetComponent<AudioSource>().pitch = 1f;
 
             if (isGrounded && velocity.y < 0)
             {
@@ -55,6 +56,7 @@ public class PlayerMovementScript : MonoBehaviour
 
             if (Input.GetKey(IniFiles.Keybinds.sprint))
             {
+                GetComponent<AudioSource>().pitch = 1.58f;
                 currentSpeed = speed * 1.58f;
             }
 
@@ -101,6 +103,17 @@ public class PlayerMovementScript : MonoBehaviour
 
             Vector3 move = transform.right * x + transform.forward * z;
             controller.Move(move * currentSpeed * Time.deltaTime);
+
+            //For playing footstep noises
+            if (Input.GetKeyDown(IniFiles.Keybinds.forward))
+            {
+                GetComponent<AudioSource>().Play();
+            }
+
+            if (Input.GetKeyUp(IniFiles.Keybinds.forward))
+            {
+                GetComponent<AudioSource>().Stop();
+            }
         }
     }
 
