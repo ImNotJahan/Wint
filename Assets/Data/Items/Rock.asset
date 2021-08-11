@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 6449618868868969878, guid: f0d7a45573d374a4e83f483a375c3139,
     type: 3}
-  item_id: rock
-  description: It's a rock
+  item_id: Rock
+  description: It's a rock.
   count: 1
   rarity: 0

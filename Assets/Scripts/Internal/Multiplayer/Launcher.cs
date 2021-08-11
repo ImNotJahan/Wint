@@ -26,8 +26,13 @@ public class Launcher : MonoBehaviourPunCallbacks
     void Start()
     {
         instance = this;
-
+        DiscordController.instance.onJoin.AddListener(JoinCallback);
         PhotonNetwork.ConnectUsingSettings();
+    }
+
+    public void JoinCallback(string id)
+    {
+        PhotonNetwork.JoinRoom(id);
     }
 
     public void SetUsername()
@@ -70,6 +75,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         refreshPlayerlist();
 
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+
+        DiscordController.CheckPresence("In a room - " + PhotonNetwork.CurrentRoom.Name, PhotonNetwork.CurrentRoom.Name,
+            PhotonNetwork.CurrentRoom.PlayerCount);
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)
@@ -89,7 +97,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        PhotonNetwork.LoadLevel(1);
+        PhotonNetwork.LoadLevel(2);
+        DiscordController.CheckPresence("Slaying Minotaurs");
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -125,6 +134,9 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     void refreshPlayerlist()
     {
+        DiscordController.CheckPresence("In a room - " + PhotonNetwork.CurrentRoom.Name, PhotonNetwork.CurrentRoom.Name,
+            PhotonNetwork.CurrentRoom.PlayerCount);
+
         playersInRoom.text = "";
 
         for (int k = 0; k < PhotonNetwork.PlayerList.Length; k++)

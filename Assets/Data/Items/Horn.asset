@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 2599524521605237006, guid: 92c5b3259aae31e4e888ad04630a43e8,
     type: 3}
-  item_id: horn
-  description: A pointy thing coming out of a head
+  item_id: Horn
+  description: A pointy thing coming that used to be coming out of someones head.
   count: 1
   rarity: 0.2

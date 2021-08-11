@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 [Serializable]
 public class DiscordJoinEvent : UnityEngine.Events.UnityEvent<string> { }
@@ -16,7 +15,6 @@ public class DiscordController : MonoBehaviour
     public static int timestamp = 0;
     public DiscordRpc.RichPresence presence = new DiscordRpc.RichPresence();
     public string applicationId = "852535107906437140";
-    public string optionalSteamId;
     public DiscordRpc.DiscordUser joinRequest;
     public UnityEngine.Events.UnityEvent onConnect;
     public UnityEngine.Events.UnityEvent onDisconnect;
@@ -24,6 +22,7 @@ public class DiscordController : MonoBehaviour
     public DiscordJoinEvent onJoin;
     public DiscordJoinEvent onSpectate;
     public DiscordJoinRequestEvent onJoinRequest;
+    public static DiscordController instance;
 
     DiscordRpc.EventHandlers handlers;
 
@@ -43,7 +42,7 @@ public class DiscordController : MonoBehaviour
     public void ReadyCallback(ref DiscordRpc.DiscordUser connectedUser)
     {
         onConnect.Invoke();
-        CheckPresence("Slaying Minotaurs");
+        CheckPresence("Choosing what to do");
 
         user = connectedUser;
         MenuLoaded();
@@ -58,22 +57,26 @@ public class DiscordController : MonoBehaviour
         }
     }
 
-    public static void CheckPresence(string state)
+    public static void CheckPresence(string action, string partyId = "", int amountOfPeople = 1)
     {
-        int amountOfPlayers = 1;
         DiscordRpc.RichPresence presence = new DiscordRpc.RichPresence();
 
-        presence.state = state;
-        presence.details = amountOfPlayers == 1 ? "Solo" : "In a party";
+        presence.state = amountOfPeople == 1 ? "Solo" : "In a party";
+        presence.details = action;
         presence.startTimestamp = timestamp;
         presence.endTimestamp = 0;
-        presence.smallImageText = "ImNotJahan";
         presence.largeImageText = "Level 1";
-        presence.largeImageKey = "game_icon";
-        presence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
-        presence.partySize = amountOfPlayers;
-        presence.partyMax = 5;
-        presence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
+        presence.largeImageKey = "icon";
+
+        if(partyId != "")
+        {
+            presence.joinSecret = partyId;
+            presence.partyId = "scret";
+            presence.matchSecret = "motch";
+            presence.partySize = amountOfPeople;
+            presence.partyMax = 10;
+            presence.instance = true;
+        }
 
         DiscordRpc.UpdatePresence(presence);
     }
@@ -85,10 +88,12 @@ public class DiscordController : MonoBehaviour
 
     public void ErrorCallback(int errorCode, string message)
     {
+        Debug.Log(message);
     }
 
     public void JoinCallback(string secret)
     {
+
         onJoin.Invoke(secret);
     }
 
@@ -106,6 +111,7 @@ public class DiscordController : MonoBehaviour
     void Start()
     {
         timestamp = DateTime.UtcNow.Second;
+        instance = this;
     }
 
     void Update()
@@ -122,7 +128,7 @@ public class DiscordController : MonoBehaviour
         handlers.joinCallback += JoinCallback;
         handlers.spectateCallback += SpectateCallback;
         handlers.requestCallback += RequestCallback;
-        DiscordRpc.Initialize(applicationId, ref handlers, true, optionalSteamId);
+        DiscordRpc.Initialize(applicationId, ref handlers, true, "");
     }
 
     void OnDisable()
