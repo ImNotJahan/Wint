@@ -5,6 +5,8 @@ public class PlayerMovementScript : MonoBehaviour
 {
     private CharacterController controller;
 
+    public List<Recipe> defaultRecipes = new List<Recipe>();
+
     [Range(1f, 20f)]
     public float speed = 12f;
     float currentSpeed;
@@ -28,12 +30,16 @@ public class PlayerMovementScript : MonoBehaviour
     public CharacterStats characterStats = new CharacterStats();
     public static List<Vector3> spawnpoints = new List<Vector3>();
 
+    public static PlayerMovementScript instance;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         characterStats = GetComponent<CharacterCombat>().myStats;
 
         characterStats.movementScript = this;
+        characterStats.knownRecipes = defaultRecipes;
+        instance = this;
 
         foreach(Transform spawn in GameObject.Find("spawnpoints").transform)
         {

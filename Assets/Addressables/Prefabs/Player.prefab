@@ -261,6 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0160fe7ffc45ece44ba447312b1106a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultRecipes:
+  - {fileID: 11400000, guid: 817bf0f0d4e7f7e43837869180225895, type: 2}
   speed: 5
   gravity: -30
   jumpHeight: 1
@@ -286,6 +288,7 @@ MonoBehaviour:
     equipedWeapon: 
     weapon: {fileID: 0}
     inventory: []
+    knownRecipes: []
     log: []
     achievements: []
     dropItemsOnDeath: 0
@@ -453,6 +456,7 @@ MonoBehaviour:
     equipedWeapon: 
     weapon: {fileID: 0}
     inventory: []
+    knownRecipes: []
     log: []
     achievements: []
     dropItemsOnDeath: 0

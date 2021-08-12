@@ -7,7 +7,7 @@ using UnityEngine;
 public class CharacterStats
 {
     private static string directorypath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
-                @"\Jahan Rashidi\Familia Game\Save\";
+                @"\Jahan Rashidi\Wint\Saves\";
 
     public static CharacterStats currentPlayerInstance;
 
@@ -29,6 +29,7 @@ public class CharacterStats
     public Weapon weapon;
 
     public List<Item> inventory = new List<Item>();
+    public List<Recipe> knownRecipes = new List<Recipe>();
     public List<Quest> log = new List<Quest>();
     public List<string> achievements = new List<string>();
 
