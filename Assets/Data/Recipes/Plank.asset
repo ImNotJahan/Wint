@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76c18478bca9e241a2e00ed5198fea8, type: 3}
   m_Name: Plank
   m_EditorClassIdentifier: 
-  result: {fileID: 0}
+  result: {fileID: 11400000, guid: 4f848d4c018ba3a4580f449a0f35f2a2, type: 2}
   ingredients:
   - {fileID: 11400000, guid: 637fe6f930abfc34b9b87671ffd2afae, type: 2}

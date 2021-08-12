@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589abdffa5f157846b7d1510e42b8b06, type: 3}
   m_Name: Plank
   m_EditorClassIdentifier: 
-  gameItem: {fileID: 0}
+  gameItem: {fileID: 7940681960730119802, guid: 993bcae179691804491928664c36b1a5,
+    type: 3}
   item_id: Plank
   description: Wood but now flat.
   count: 1
