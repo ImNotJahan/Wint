@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77997656245304620}
-  m_Mesh: {fileID: -1685123697272819917, guid: 21c74ba6361487f4bb5f38955ac60840, type: 3}
+  m_Mesh: {fileID: -1556152842972943637, guid: 1314df69a5097a24c81f3626893379e4, type: 3}
 --- !u!23 &1879661327429917945
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,8 +61,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6781176080585934814, guid: 21c74ba6361487f4bb5f38955ac60840, type: 3}
-  - {fileID: 3455001260080036790, guid: 21c74ba6361487f4bb5f38955ac60840, type: 3}
+  - {fileID: -1114067011517105867, guid: 6ca1d770925b1ff43bae9e602dbbb74c, type: 3}
+  - {fileID: 2100000, guid: 9c50238f05fb44f4bbb87b160663f014, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   description: 
   count: 1
   onGround: 1
-  weaponId: 
+  weaponId: orichalcum_axe
   anim: {fileID: 6566898051652503238}
   bloodEffect: {fileID: 0}
   baseDamage: 10

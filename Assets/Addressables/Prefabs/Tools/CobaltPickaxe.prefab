@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7881318885549822207}
-  m_Mesh: {fileID: -3003347657506098208, guid: 99592ac33d8252940a3bfbcdefd1862c, type: 3}
+  m_Mesh: {fileID: 7638954072533424279, guid: 3051bc0b1666d434694e37f2485f8370, type: 3}
 --- !u!23 &8530079054817784106
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,8 +61,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6120325400536396939, guid: 99592ac33d8252940a3bfbcdefd1862c, type: 3}
-  - {fileID: 4864755347078289786, guid: 99592ac33d8252940a3bfbcdefd1862c, type: 3}
+  - {fileID: -1114067011517105867, guid: 6ca1d770925b1ff43bae9e602dbbb74c, type: 3}
+  - {fileID: 2100000, guid: 2acb0ab90d991cf45897b97834929dff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   description: 
   count: 1
   onGround: 1
-  weaponId: 
+  weaponId: cobalt_pickaxe
   anim: {fileID: 2927180684070287906}
   bloodEffect: {fileID: 0}
   baseDamage: 10

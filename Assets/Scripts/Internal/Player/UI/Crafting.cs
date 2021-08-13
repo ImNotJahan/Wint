@@ -13,6 +13,8 @@ namespace Crafting
         [SerializeField] Text ingredients = null;
         [SerializeField] CraftButton button = null;
 
+        [SerializeField] Utility utility = Utility.Inventory;
+
         CharacterStats stats;
 
         private void Start()
@@ -34,19 +36,22 @@ namespace Crafting
 
                     foreach (Recipe recipe in stats.knownRecipes)
                     {
-                        GameObject invItem = Instantiate(invPrefab, invList);
-                        invItem.transform.GetChild(0).GetComponent<Text>().text = recipe.result.item_id;
+                        if (recipe.utility == utility)
+                        {
+                            GameObject invItem = Instantiate(invPrefab, invList);
+                            invItem.transform.GetChild(0).GetComponent<Text>().text = recipe.result.item_id;
 
-                        CraftItem invItemComponent = invItem.GetComponent<CraftItem>();
-                        invItemComponent.title = recipe.result;
-                        invItemComponent.count = recipe.result.count;
-                        invItemComponent.ingredients = recipe.ingredients;
+                            CraftItem invItemComponent = invItem.GetComponent<CraftItem>();
+                            invItemComponent.title = recipe.result;
+                            invItemComponent.count = recipe.result.count;
+                            invItemComponent.ingredients = recipe.ingredients;
 
-                        invItemComponent.craftIngredients = ingredients;
-                        invItemComponent.craftTitle = title;
-                        invItemComponent.button = button;
+                            invItemComponent.craftIngredients = ingredients;
+                            invItemComponent.craftTitle = title;
+                            invItemComponent.button = button;
 
-                        invItem.GetComponent<Button>().onClick.AddListener(invItemComponent.DisplayItem);
+                            invItem.GetComponent<Button>().onClick.AddListener(invItemComponent.DisplayItem);
+                        }
                     }
 
                     title.text = "";

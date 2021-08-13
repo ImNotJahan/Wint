@@ -87,7 +87,7 @@ namespace IniFiles
             keybinds.Write("Inventory", inventory, "Other");
             keybinds.Write("Pause", pause, "Other");
             keybinds.Write("Log", log, "Other");
-            keybinds.Write("Crafting", log, "Other");
+            keybinds.Write("Crafting", crafting, "Other");
         }
     }
     

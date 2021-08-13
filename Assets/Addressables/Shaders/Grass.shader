@@ -58,8 +58,8 @@
 		#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 		#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
 
-		#include "Assets/Resources/Shaders/Grass.hlsl"
-		#include "Assets/Resources/Shaders/Tessellation.hlsl"
+		#include "Assets/Addressables/Shaders/Grass.hlsl"
+		#include "Assets/Addressables/Shaders/Tessellation.hlsl"
 
 		// Fragment
 		float4 frag(GeometryOutput input, bool isFrontFace : SV_IsFrontFace) : SV_Target {
