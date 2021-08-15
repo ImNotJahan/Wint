@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,6 +19,10 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField] float persistance = 1;
     [SerializeField] float lacunarity = 1;
     [SerializeField] float exponent = 1;
+    [SerializeField] int biomeOctaves = 2;
+
+    [SerializeField] float grassMargin = 0.2f;
+
     public Vector2 offset = new Vector2();
 
     [SerializeField] Gradient gradient = new Gradient();
@@ -35,10 +40,11 @@ public class MeshGenerator : MonoBehaviour
         if(shouldErode) GetComponent<Erosion>().Erode(tempHeightMap, size, erosionIterations);
 
         float[,] heightMap = Unflatten(tempHeightMap);
-        float[,] moistureMap = Unflatten(Noise.Generate(size + 1, seed + 3, biomeScale, 2, persistance, lacunarity, offset));
+        float[,] moistureMap = Unflatten(Noise.Generate(size + 1, seed + 3, biomeScale, biomeOctaves, persistance, lacunarity, offset));
 
         Color[] colors = new Color[(int)Mathf.Pow(size + 1, 2)];
         Vector3[] vertices = new Vector3[(int)Mathf.Pow(size + 1, 2)];
+        Vector2[] uvs = new Vector2[vertices.Length];
 
         for (int k = 0, y = 0; y <= size; y++)
         {
@@ -102,6 +108,7 @@ public class MeshGenerator : MonoBehaviour
         }
 
         int[] triangles = new int[size * size * 6];
+        List<int> grass = new List<int>();
 
         //v stands for vertex, and t stands for triangular polygon
         for (int v = 0, t = 0, y = 0; y < size; y++)
@@ -115,18 +122,38 @@ public class MeshGenerator : MonoBehaviour
                 triangles[t + 4] = v + size + 1;
                 triangles[t + 5] = v + size + 2;
 
+                if(colors[v].g > colors[v].r + grassMargin && colors[v].g > colors[v].b + grassMargin)
+                {
+                    grass.Add(triangles[t]);
+                    grass.Add(triangles[t + 1]);
+                    grass.Add(triangles[t + 2]);
+                }
+
                 v++;
                 t += 6;
             }
             v++;
         }
 
+        for (int k = 0, y = 0; y <= size; y++)
+        {
+            for (int x = 0; x <= size; x++)
+            {
+                uvs[k] = new Vector2((float)x / size, (float)y / size);
+                k++;
+            }
+        }
+
         Mesh mesh = new Mesh
         {
             vertices = vertices,
             triangles = triangles,
+            uv = uvs,
             colors = colors
         };
+
+        mesh.subMeshCount = 2;
+        mesh.SetTriangles(grass.ToArray(), 1);
 
         return mesh;
     }
