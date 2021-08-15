@@ -5,7 +5,7 @@ public class ChunkGenerator : MonoBehaviour
 {
     public GameObject chunk;
 
-    public const float maxViewDst = 300;
+    public static float maxViewDst = 300;
     public static Transform viewer;
 
     public static Vector2 viewerPosition;
@@ -17,7 +17,7 @@ public class ChunkGenerator : MonoBehaviour
 
     void Start()
     {
-        chunkSize = 200;
+        chunkSize = 241;
         chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);
     }
 
