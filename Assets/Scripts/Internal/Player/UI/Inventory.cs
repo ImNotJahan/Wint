@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,15 +31,20 @@ public class Inventory : MonoBehaviour
                     Destroy(item.gameObject);
                 }
 
+                Dictionary<string, int> invCache = new Dictionary<string, int>();
+
                 foreach (Item item in stats.inventory)
                 {
+                    if (invCache.ContainsKey(item.item_id)) invCache[item.item_id]++;
+                    else invCache[item.item_id] = 1;
+
                     GameObject invItem = Instantiate(invPrefab, invList);
                     invItem.transform.GetChild(0).GetComponent<Text>().text = item.item_id;
 
                     InventoryItem invItemComponent = invItem.GetComponent<InventoryItem>();
                     invItemComponent.title = item.item_id;
                     invItemComponent.description = item.description;
-                    invItemComponent.count = item.count;
+                    invItemComponent.count = invCache[item.item_id];
 
                     invItemComponent.invTitle = title;
                     invItemComponent.invDescription = description;

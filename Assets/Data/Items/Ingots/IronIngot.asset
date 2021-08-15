@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589abdffa5f157846b7d1510e42b8b06, type: 3}
+  m_Name: IronIngot
+  m_EditorClassIdentifier: 
+  gameItem: {fileID: 3408307907553376118, guid: 6cdf3db432d93984a932abdc16231ff4,
+    type: 3}
+  item_id: Iron Ingot
+  description: 
+  count: 1
+  rarity: 0
