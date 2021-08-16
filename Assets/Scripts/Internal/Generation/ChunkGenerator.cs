@@ -17,7 +17,7 @@ public class ChunkGenerator : MonoBehaviour
 
     void Start()
     {
-        chunkSize = 241;
+        chunkSize = 240;
         chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);
     }
 
