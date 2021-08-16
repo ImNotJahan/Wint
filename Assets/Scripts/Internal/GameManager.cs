@@ -36,6 +36,15 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadProgress());
     }
 
+    public void LoadMultiplayerGame()
+    {
+        scenesLoading.Add(SceneManager.UnloadSceneAsync(1));
+        loading.SetActive(true);
+        scenesLoading.Add(SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive));
+
+        StartCoroutine(LoadProgress());
+    }
+
     IEnumerator LoadProgress()
     {
         foreach(AsyncOperation scene in scenesLoading)

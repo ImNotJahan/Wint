@@ -10,7 +10,6 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField] bool shouldPlace = false;
     [SerializeField] bool shouldErode = false;
 
-    [SerializeField] bool shouldErodeCollider = false;
     [SerializeField] int colliderLOD = 6;
 
     [SerializeField] float heightMultiplier = 1;
@@ -21,7 +20,6 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField] int octaves = 1;
     [SerializeField] float persistance = 1;
     [SerializeField] float lacunarity = 1;
-    [SerializeField] float exponent = 1;
     [SerializeField] int biomeOctaves = 2;
 
     [SerializeField] float grassMargin = 0.2f;
@@ -35,15 +33,9 @@ public class MeshGenerator : MonoBehaviour
 
     public PlaceableObject[] objects;
 
-    private Mesh GenerateMeshOnly()
+    private Mesh GenerateMeshOnly(float[,] heightMap)
     {
-        //noise maps
-        float[] tempHeightMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
-
-        if(shouldErode) GetComponent<Erosion>().Erode(tempHeightMap, size, erosionIterations);
-
-        float[,] heightMap = Unflatten(tempHeightMap);
-        float[,] moistureMap = Unflatten(Noise.Generate(size + 1, seed + 3, biomeScale, biomeOctaves, persistance, lacunarity, offset));
+        float[,] moistureMap = Unflatten(Noise.Generate(size + 1, seed + 3, scale, biomeOctaves, persistance, lacunarity, offset));
 
         Color[] colors = new Color[(int)Mathf.Pow(size + 1, 2)];
         Vector3[] vertices = new Vector3[(int)Mathf.Pow(size + 1, 2)];
@@ -53,7 +45,7 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= size; x++)
             {
-                vertices[k] = new Vector3(x, Mathf.Pow(heightMap[x, y] * heightMultiplier, exponent), y);
+                vertices[k] = new Vector3(x, heightMap[x, y] * heightMultiplier, y);
                 colors[k] = gradient.Evaluate(moistureMap[x, y]);
                 k++;
             }
@@ -161,12 +153,8 @@ public class MeshGenerator : MonoBehaviour
         return mesh;
     }
 
-    private Mesh GenerateCollider()
+    private Mesh GenerateCollider(float[,] heightMap)
     {
-        float[] tempHeightMap = Noise.Generate(this.size + 1, seed, scale, octaves, persistance, lacunarity, offset);
-        if (shouldErodeCollider) GetComponent<Erosion>().Erode(tempHeightMap, this.size, erosionIterations);
-        float[,] heightMap = Unflatten(tempHeightMap);
-
         int simplificationIncrement = colliderLOD * 2;
         int size = (this.size - 1) / simplificationIncrement + 1;
 
@@ -176,7 +164,7 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= this.size; x += simplificationIncrement)
             {
-                vertices[k] = new Vector3(x, Mathf.Pow(heightMap[x, y] * heightMultiplier, exponent), y);
+                vertices[k] = new Vector3(x, heightMap[x, y] * heightMultiplier, y);
                 k++;
             }
         }
@@ -211,18 +199,26 @@ public class MeshGenerator : MonoBehaviour
 
     public void Generate(bool withCollider = true)
     {
-        Mesh mesh = GenerateMeshOnly();
+        float[] tempHeightMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
+        if (shouldErode) GetComponent<Erosion>().Erode(tempHeightMap, size, erosionIterations);
+        float[,] heightMap = Unflatten(tempHeightMap);
+
+        Mesh mesh = GenerateMeshOnly(heightMap);
         GetComponent<MeshFilter>().sharedMesh = mesh;
         GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
 
-        if(withCollider) GetComponent<MeshCollider>().sharedMesh = GenerateCollider();
+        if(withCollider) GetComponent<MeshCollider>().sharedMesh = GenerateCollider(heightMap);
     }
 
     public void DrawMapInEditor()
     {
-        GetComponent<MeshFilter>().sharedMesh = GenerateMeshOnly();
+        float[] tempHeightMap = Noise.Generate(size + 1, seed, scale, octaves, persistance, lacunarity, offset);
+        if (shouldErode) GetComponent<Erosion>().Erode(tempHeightMap, size, erosionIterations);
+        float[,] heightMap = Unflatten(tempHeightMap);
+
+        GetComponent<MeshFilter>().sharedMesh = GenerateMeshOnly(heightMap);
         GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
-        GetComponent<MeshCollider>().sharedMesh = GenerateCollider();
+        GetComponent<MeshCollider>().sharedMesh = GenerateCollider(heightMap);
     }
 
     static float[,] Unflatten(float[] input)

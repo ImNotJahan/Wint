@@ -14,5 +14,6 @@ public enum Utility
     Inventory,
     Furance,
     Anvil,
-    Table
+    Table,
+    Crucible
 }

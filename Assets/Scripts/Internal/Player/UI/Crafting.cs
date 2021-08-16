@@ -13,56 +13,61 @@ namespace Crafting
         [SerializeField] Text ingredients = null;
         [SerializeField] CraftButton button = null;
 
-        [SerializeField] Utility utility = Utility.Inventory;
-
         CharacterStats stats;
 
         private void Start()
         {
             inventory.SetActive(false);
             stats = CharacterStats.currentPlayerInstance;
+
+            Interact.furnaceInteractedWith.AddListener(() => { OpenCrafting(Utility.Furance); });
+        }
+
+        public void OpenCrafting(Utility utility)
+        {
+            if (!inventory.activeSelf)
+            {
+                foreach (Transform item in invList)
+                {
+                    Destroy(item.gameObject);
+                }
+
+                foreach (Recipe recipe in stats.knownRecipes)
+                {
+                    if (recipe.utility == utility)
+                    {
+                        GameObject invItem = Instantiate(invPrefab, invList);
+                        invItem.transform.GetChild(0).GetComponent<Text>().text = recipe.result.item_id;
+
+                        CraftItem invItemComponent = invItem.GetComponent<CraftItem>();
+                        invItemComponent.title = recipe.result;
+                        invItemComponent.count = recipe.result.count;
+                        invItemComponent.ingredients = recipe.ingredients;
+
+                        invItemComponent.craftIngredients = ingredients;
+                        invItemComponent.craftTitle = title;
+                        invItemComponent.button = button;
+
+                        invItem.GetComponent<Button>().onClick.AddListener(invItemComponent.DisplayItem);
+                    }
+                }
+
+                title.text = "";
+            }
+
+            inventory.SetActive(!inventory.activeSelf);
+
+            MouseLook.disabled = inventory.activeSelf;
+
+            Cursor.lockState = inventory.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = inventory.activeSelf;
         }
 
         private void Update()
         {
             if (Input.GetKeyUp(IniFiles.Keybinds.crafting))
             {
-                if (!inventory.activeSelf)
-                {
-                    foreach (Transform item in invList)
-                    {
-                        Destroy(item.gameObject);
-                    }
-
-                    foreach (Recipe recipe in stats.knownRecipes)
-                    {
-                        if (recipe.utility == utility)
-                        {
-                            GameObject invItem = Instantiate(invPrefab, invList);
-                            invItem.transform.GetChild(0).GetComponent<Text>().text = recipe.result.item_id;
-
-                            CraftItem invItemComponent = invItem.GetComponent<CraftItem>();
-                            invItemComponent.title = recipe.result;
-                            invItemComponent.count = recipe.result.count;
-                            invItemComponent.ingredients = recipe.ingredients;
-
-                            invItemComponent.craftIngredients = ingredients;
-                            invItemComponent.craftTitle = title;
-                            invItemComponent.button = button;
-
-                            invItem.GetComponent<Button>().onClick.AddListener(invItemComponent.DisplayItem);
-                        }
-                    }
-
-                    title.text = "";
-                }
-
-                inventory.SetActive(!inventory.activeSelf);
-
-                MouseLook.disabled = inventory.activeSelf;
-
-                Cursor.lockState = inventory.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
-                Cursor.visible = inventory.activeSelf;
+                OpenCrafting(Utility.Inventory);
             }
         }
     }

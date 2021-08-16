@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChunkGenerator : MonoBehaviour
@@ -57,7 +58,6 @@ public class ChunkGenerator : MonoBehaviour
                 {
                     terrainChunkDictionary.Add(viewedChunkCoord, new TerrainChunk(viewedChunkCoord, chunkSize, transform, chunk));
                 }
-
             }
         }
     }

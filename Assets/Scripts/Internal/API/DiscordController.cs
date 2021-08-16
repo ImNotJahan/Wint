@@ -50,11 +50,7 @@ public class DiscordController : MonoBehaviour
 
     public void MenuLoaded()
     {
-        if (!string.IsNullOrEmpty(user.username))
-        {
-            //GameObject.Find("Canvas/Multiplayer/UsernameInput").transform.GetChild(1)
-                //.GetComponent<Text>().text = user.username;
-        }
+
     }
 
     public static void CheckPresence(string action, string partyId = "", int amountOfPeople = 1)
@@ -65,7 +61,7 @@ public class DiscordController : MonoBehaviour
         presence.details = action;
         presence.startTimestamp = timestamp;
         presence.endTimestamp = 0;
-        presence.largeImageText = "Level 1";
+        presence.largeImageText = "Timeline 1";
         presence.largeImageKey = "icon";
 
         if(partyId != "")

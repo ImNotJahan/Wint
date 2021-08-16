@@ -26,7 +26,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     void Start()
     {
         instance = this;
-        DiscordController.instance.onJoin.AddListener(JoinCallback);
         PhotonNetwork.ConnectUsingSettings();
     }
 

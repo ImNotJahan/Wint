@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Interact : MonoBehaviour
 {
     public UIHandler uihandler;
     public CharacterCombat characterCombat;
+    public static UnityEvent furnaceInteractedWith;
+
+    private void Awake()
+    {
+        furnaceInteractedWith = new UnityEvent();
+    }
 
     private void Start()
     {
@@ -23,6 +30,9 @@ public class Interact : MonoBehaviour
             else if (hit.GetComponent<PickableItem>())
             {
                 hit.GetComponent<PickableItem>().PickUp(transform.parent.GetComponent<Collider>());
+            } else if(hit.tag == "Furnace")
+            {
+                furnaceInteractedWith.Invoke();
             }
         }
     }
