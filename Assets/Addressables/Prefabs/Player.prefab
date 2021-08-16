@@ -263,6 +263,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultRecipes:
   - {fileID: 11400000, guid: 817bf0f0d4e7f7e43837869180225895, type: 2}
+  - {fileID: 11400000, guid: 7f14cb0007bc1fb48b06cd204e9bc4ae, type: 2}
+  - {fileID: 11400000, guid: 067ca1862f23dd24bb0cb1292634a347, type: 2}
+  - {fileID: 11400000, guid: 06e3611649fe30c429d5d06f6ae8f435, type: 2}
+  - {fileID: 11400000, guid: 8bb37792366d8334b93c5953494d60b1, type: 2}
+  - {fileID: 11400000, guid: 7d708c390ced9be4b84c17063c7745c2, type: 2}
+  - {fileID: 11400000, guid: b4c4e768d372ce140b1babd81921db15, type: 2}
+  - {fileID: 11400000, guid: 7d708c390ced9be4b84c17063c7745c2, type: 2}
   speed: 5
   gravity: -30
   jumpHeight: 1
