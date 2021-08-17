@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 3408307907553376118, guid: 6cdf3db432d93984a932abdc16231ff4,
     type: 3}
-  item_id: Iron Ingot
-  description: 
+  itemName: Iron Ingot
+  description: Ol' reliable.
   count: 1
   rarity: 0

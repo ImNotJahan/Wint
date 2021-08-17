@@ -35,7 +35,7 @@ public class MeshGenerator : MonoBehaviour
 
     private Mesh GenerateMeshOnly(float[,] heightMap)
     {
-        float[,] moistureMap = Unflatten(Noise.Generate(size + 1, seed + 3, scale, biomeOctaves, persistance, lacunarity, offset));
+        float[,] moistureMap = Unflatten(Noise.Generate(size + 1, seed + 3, biomeScale, biomeOctaves, persistance, lacunarity, offset));
 
         Color[] colors = new Color[(int)Mathf.Pow(size + 1, 2)];
         Vector3[] vertices = new Vector3[(int)Mathf.Pow(size + 1, 2)];

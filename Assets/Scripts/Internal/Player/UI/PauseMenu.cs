@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     public void ToggleMenu()
     {
         menu.SetActive(!menu.activeSelf);
+
         MouseLook.disabled = menu.activeSelf;
 
         UIHandler.onMenuChange.Invoke(new string[] { menu.activeSelf ? "on" : "off", "pause_menu" });

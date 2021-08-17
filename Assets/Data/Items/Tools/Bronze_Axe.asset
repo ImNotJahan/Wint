@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 9181876260830043566, guid: c5fa7c2f9917f1b40a7260960cfa833f,
     type: 3}
-  item_id: Bronze Axe
+  itemName: Bronze Axe
   description: If only we had some steam...
   count: 1
   rarity: 0

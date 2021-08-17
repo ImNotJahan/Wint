@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 2102065455935530181, guid: b6a754e147b4e4e4490d089e7c1ea36b,
     type: 3}
-  item_id: Iron Axe
+  itemName: Iron Axe
   description: Good for cutting down both things living and not.
   count: 1
   rarity: 0

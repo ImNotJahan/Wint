@@ -4,7 +4,7 @@
 public class Item : ScriptableObject
 {
     public GameObject gameItem;
-    public string item_id;
+    public string itemName;
     public string description;
 
     public int count;

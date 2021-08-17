@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fist
   m_EditorClassIdentifier: 
   gameItem: {fileID: 0}
-  item_id: 
+  itemName: 
   description: 
   count: 0
   rarity: 0

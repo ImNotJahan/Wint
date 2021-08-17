@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CopperIngot
   m_EditorClassIdentifier: 
   gameItem: {fileID: 338724455823285755, guid: c7c1b045fd460e747aaedb8d6a54812e, type: 3}
-  item_id: Copper Ingot
-  description: 
+  itemName: Copper Ingot
+  description: I wonder what this could be used for..
   count: 1
   rarity: 0

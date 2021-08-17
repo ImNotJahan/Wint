@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 6098285337883872265, guid: 7c77a9018fc6d3b4b817fd387661e361,
     type: 3}
-  item_id: Orichalcum Ingot
-  description: 
+  itemName: Orichalcum Ingot
+  description: Not even a sniper could stop you in this.
   count: 1
   rarity: 0

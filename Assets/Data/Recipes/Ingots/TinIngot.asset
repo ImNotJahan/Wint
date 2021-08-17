@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 589abdffa5f157846b7d1510e42b8b06, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: e76c18478bca9e241a2e00ed5198fea8, type: 3}
+  m_Name: TinIngot
   m_EditorClassIdentifier: 
-  gameItem: {fileID: 7771427464804316225, guid: 20bccfa2d3b465f448ef67e3084661e1,
-    type: 3}
-  item_id: Sword
-  description: spord
-  count: 1
-  rarity: 0.1
+  result: {fileID: 11400000, guid: 063fb42c7f843b24b99dd4db9188660d, type: 2}
+  ingredients:
+  - {fileID: 11400000, guid: fec33c146faf33f48ab89e4d90a98824, type: 2}
+  utility: 1

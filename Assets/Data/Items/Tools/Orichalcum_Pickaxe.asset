@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Orichalcum_Pickaxe
   m_EditorClassIdentifier: 
   gameItem: {fileID: 39915344222384165, guid: 45cfad61062a24b44a0bc60fb21f7a67, type: 3}
-  item_id: Orichalcum Pickaxe
+  itemName: Orichalcum Pickaxe
   description: The strongest pickaxe made of the strongeset material. You must really
     hate those rocks.
   count: 1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 1431050883658594459, guid: c31a830d2448d3c4b8a6830e35503e31,
     type: 3}
-  item_id: Log
+  itemName: Log
   description: A log from a tree, it probably has a lot of uses.
   count: 1
   rarity: 0

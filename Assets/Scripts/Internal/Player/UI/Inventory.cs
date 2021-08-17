@@ -10,6 +10,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] Text title = null;
     [SerializeField] Text description = null;
+    [SerializeField] Button drop = null;
+    [SerializeField] Button equip = null;
 
     CharacterStats stats;
 
@@ -34,19 +36,41 @@ public class Inventory : MonoBehaviour
 
                 foreach (Item item in stats.inventory)
                 {
-                    if (invCache.ContainsKey(item.item_id)) invCache[item.item_id]++;
-                    else invCache[item.item_id] = 1;
+                    if (invCache.ContainsKey(item.itemName)) invCache[item.itemName]++;
+                    else invCache[item.itemName] = 1;
 
                     GameObject invItem = Instantiate(invPrefab, invList);
-                    invItem.transform.GetChild(0).GetComponent<Text>().text = item.item_id;
+                    invItem.transform.GetChild(0).GetComponent<Text>().text = item.itemName;
+
+                    string itemDescription = item.description;
+                    Weapon weapon = item.gameItem.GetComponent<Weapon>();
+
+                    if (item.gameItem.GetComponent<Weapon>() != null)
+                    {
+                        itemDescription += "\n";
+                        itemDescription += "Damage: " + weapon.baseDamage + "\n";
+                        itemDescription += "Variation: " + weapon.variation + "\n";
+                        itemDescription += "Attack speed: " + weapon.attackSpeed + "\n";
+
+                        equip.gameObject.SetActive(true);
+                    } else equip.gameObject.SetActive(false);
 
                     InventoryItem invItemComponent = invItem.GetComponent<InventoryItem>();
-                    invItemComponent.title = item.item_id;
-                    invItemComponent.description = item.description;
-                    invItemComponent.count = invCache[item.item_id];
+                    invItemComponent.title = item.itemName;
+                    invItemComponent.description = itemDescription;
+                    invItemComponent.count = invCache[item.itemName];
+
+                    invItemComponent.itemPrefab = item.gameItem;
+                    invItemComponent.itemSelf = item;
 
                     invItemComponent.invTitle = title;
                     invItemComponent.invDescription = description;
+
+                    drop.GetComponent<Button>().onClick.RemoveAllListeners();
+                    equip.GetComponent<Button>().onClick.RemoveAllListeners();
+
+                    drop.GetComponent<Button>().onClick.AddListener(invItemComponent.Drop);
+                    equip.GetComponent<Button>().onClick.AddListener(invItemComponent.Equip);
 
                     invItem.GetComponent<Button>().onClick.AddListener(invItemComponent.DisplayItem);
                 }

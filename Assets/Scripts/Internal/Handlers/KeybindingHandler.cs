@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class KeybindingHandler : MonoBehaviour
 {
-    [SerializeField] Transform inputMenu = null;
+    //[SerializeField] Transform inputMenu = null;
     [SerializeField] GameObject keybindInput = null;
 
     public void LoadKeybinds()

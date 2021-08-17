@@ -28,7 +28,7 @@ public class QuestEditor : Editor
         if (quest.reward == null) quest.reward = new Item[0];
         for (int k = 0; k < quest.reward.Length; k++)
         {
-            GUILayout.Label(string.Format("{0} - {2} {1}", k, quest.reward[k].item_id,
+            GUILayout.Label(string.Format("{0} - {2} {1}", k, quest.reward[k].itemName,
                 quest.reward[k].count));
         }
 

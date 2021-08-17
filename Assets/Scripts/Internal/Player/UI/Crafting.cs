@@ -20,13 +20,26 @@ namespace Crafting
             inventory.SetActive(false);
             stats = CharacterStats.currentPlayerInstance;
 
+            stats.knownRecipes.Sort(delegate (Recipe x, Recipe y)
+            {
+                if (x.result.itemName == null && y.result.itemName == null) return 0;
+                else if (x.result.itemName == null) return -1;
+                else if (y.result.itemName == null) return 1;
+                else return x.result.itemName.CompareTo(y.result.itemName);
+            });
+
             Interact.furnaceInteractedWith.AddListener(() => { OpenCrafting(Utility.Furance); });
+            Interact.anvilInteractedWith.AddListener(() => { OpenCrafting(Utility.Anvil); });
+            Interact.crucibleInteractedWith.AddListener(() => { OpenCrafting(Utility.Crucible); });
         }
 
         public void OpenCrafting(Utility utility)
         {
             if (!inventory.activeSelf)
             {
+                title.text = "";
+                ingredients.text = "";
+
                 foreach (Transform item in invList)
                 {
                     Destroy(item.gameObject);
@@ -37,7 +50,7 @@ namespace Crafting
                     if (recipe.utility == utility)
                     {
                         GameObject invItem = Instantiate(invPrefab, invList);
-                        invItem.transform.GetChild(0).GetComponent<Text>().text = recipe.result.item_id;
+                        invItem.transform.GetChild(0).GetComponent<Text>().text = recipe.result.itemName;
 
                         CraftItem invItemComponent = invItem.GetComponent<CraftItem>();
                         invItemComponent.title = recipe.result;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 2621434820201867895, guid: 6f9afe06baaa39441a198c272c606c69,
     type: 3}
-  item_id: Bronze Ingot
-  description: 
+  itemName: Bronze Ingot
+  description: Good for pipes.
   count: 1
   rarity: 0

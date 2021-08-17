@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 6903686606683614553, guid: 3157996eecb7d7747a1f93c1918a15fe,
     type: 3}
-  item_id: Iron Chunk
+  itemName: Iron Chunk
   description: Smelt it down and get some tasty red candy. Make sure to put it in
     your mouth while it's hot!
   count: 1

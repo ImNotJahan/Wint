@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: obsidian_chunk
   m_EditorClassIdentifier: 
   gameItem: {fileID: 288989998408457137, guid: b90930ffe74e739439808d10c36c7cb4, type: 3}
-  item_id: Obsidian Chunk
+  itemName: Obsidian Chunk
   description: Really should be called obsidian shard; very sharp and very dangerous.
   count: 1
   rarity: 0

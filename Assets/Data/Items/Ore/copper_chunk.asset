@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 8786436950314079113, guid: 1bc9bdfd7f0ee1840bd83046c26380a1,
     type: 3}
-  item_id: Copper Chunk
+  itemName: Copper Chunk
   description: Weak on its own, but it can be turned into an alloy that provides
     excelent resistance against certain enemies.
   count: 1

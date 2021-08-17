@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 8716926092887654625, guid: a46defc3ff3326041a6480fb7f596990,
     type: 3}
-  item_id: Tin Chunk
+  itemName: Tin Chunk
   description: Good alternative for paper.
   count: 1
   rarity: 0

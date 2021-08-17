@@ -269,7 +269,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8bb37792366d8334b93c5953494d60b1, type: 2}
   - {fileID: 11400000, guid: 7d708c390ced9be4b84c17063c7745c2, type: 2}
   - {fileID: 11400000, guid: b4c4e768d372ce140b1babd81921db15, type: 2}
-  - {fileID: 11400000, guid: 7d708c390ced9be4b84c17063c7745c2, type: 2}
+  - {fileID: 11400000, guid: 095ec2222a1cd5e4b84f5a836edf2cd4, type: 2}
+  - {fileID: 11400000, guid: 80b80573ce9c70546b767124ed2439be, type: 2}
+  - {fileID: 11400000, guid: aa3df4266ba94874bb77714bd71560e0, type: 2}
+  - {fileID: 11400000, guid: 03e71995edfad86418f5d7d4131829cb, type: 2}
+  - {fileID: 11400000, guid: f0e119c7170d06544bf32cad06dd477f, type: 2}
+  - {fileID: 11400000, guid: 9e1087a101cf2274ab0ea45adf1c9679, type: 2}
+  - {fileID: 11400000, guid: b4c2eddf2c59f0e49821b7e8b1e6b810, type: 2}
+  - {fileID: 11400000, guid: 765947d9738ea17498d155b1f9f33b93, type: 2}
+  - {fileID: 11400000, guid: 1e02444493e9d8d45972d3483b458a15, type: 2}
   speed: 5
   gravity: -30
   jumpHeight: 1

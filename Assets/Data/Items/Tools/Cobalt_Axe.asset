@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 6012885398596227570, guid: acfaf05049d1fa642968e5c0a3670a52,
     type: 3}
-  item_id: Cobalt Axe
+  itemName: Cobalt Axe
   description: Now you can cut things down, in color!
   count: 1
   rarity: 0

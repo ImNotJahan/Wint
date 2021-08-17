@@ -6,10 +6,14 @@ public class Interact : MonoBehaviour
     public UIHandler uihandler;
     public CharacterCombat characterCombat;
     public static UnityEvent furnaceInteractedWith;
+    public static UnityEvent anvilInteractedWith;
+    public static UnityEvent crucibleInteractedWith;
 
     private void Awake()
     {
         furnaceInteractedWith = new UnityEvent();
+        crucibleInteractedWith = new UnityEvent();
+        anvilInteractedWith = new UnityEvent();
     }
 
     private void Start()
@@ -33,6 +37,12 @@ public class Interact : MonoBehaviour
             } else if(hit.tag == "Furnace")
             {
                 furnaceInteractedWith.Invoke();
+            } else if (hit.tag == "Anvil")
+            {
+                anvilInteractedWith.Invoke();
+            } else if (hit.tag == "Crucible")
+            {
+                crucibleInteractedWith.Invoke();
             }
         }
     }

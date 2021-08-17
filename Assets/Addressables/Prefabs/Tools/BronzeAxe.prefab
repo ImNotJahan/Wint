@@ -104,11 +104,11 @@ MonoBehaviour:
   weaponId: bronze_axe
   anim: {fileID: 4586643594429452845}
   bloodEffect: {fileID: 0}
-  baseDamage: 10
+  baseDamage: 17
   variation: 3
   attackSpeed: 1
   magic: 0
-  strengths: 
+  strengths: 01000000
   toolType: 1
 --- !u!65 &4059510845009696810
 BoxCollider:
@@ -136,6 +136,6 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: c267d2354d3489645a1347e8131cce35, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0

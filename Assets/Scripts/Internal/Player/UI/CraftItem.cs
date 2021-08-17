@@ -14,14 +14,21 @@ public class CraftItem : MonoBehaviour
 
     public void DisplayItem()
     {
-        if (count != 1) craftTitle.text = string.Format("{0} {1}x", title.item_id, count.ToString());
-        else craftTitle.text = title.item_id;
+        if (count != 1) craftTitle.text = string.Format("{0} {1}x", title.itemName, count.ToString());
+        else craftTitle.text = title.itemName;
 
         string ingredientsList = "";
-
-        foreach(Item ingredient in ingredients)
+        ingredients.Sort(delegate (Item x, Item y)
         {
-            ingredientsList += ingredient.item_id + "\n";
+            if (x.itemName == null && y.itemName == null) return 0;
+            else if (x.itemName == null) return -1;
+            else if (y.itemName == null) return 1;
+            else return x.itemName.CompareTo(y.itemName);
+        });
+
+        foreach (Item ingredient in ingredients)
+        {
+            ingredientsList += ingredient.itemName + "\n";
         }
 
         craftIngredients.text = ingredientsList;

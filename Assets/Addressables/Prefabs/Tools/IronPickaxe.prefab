@@ -108,7 +108,7 @@ MonoBehaviour:
   variation: 3
   attackSpeed: 1
   magic: 0
-  strengths: 
+  strengths: 01000000
   toolType: 2
 --- !u!65 &8588532640851642158
 BoxCollider:
@@ -136,6 +136,6 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: c267d2354d3489645a1347e8131cce35, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0

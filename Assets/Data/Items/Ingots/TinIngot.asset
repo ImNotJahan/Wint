@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 3262829534495481345, guid: 11acada430976f34ca304769330c4eb5,
     type: 3}
-  item_id: Tin Ingot
-  description: 
+  itemName: Tin Ingot
+  description: Don't make anything out of this. Just don't.
   count: 1
   rarity: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 7940681960730119802, guid: 993bcae179691804491928664c36b1a5,
     type: 3}
-  item_id: Plank
+  itemName: Plank
   description: Wood but now flat.
   count: 1
   rarity: 0

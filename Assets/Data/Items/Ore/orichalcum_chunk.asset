@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 9024702846247609662, guid: a6336d14b928e474ba036b90fc5da6bd,
     type: 3}
-  item_id: Orichalcum Chunk
+  itemName: Orichalcum Chunk
   description: This stuff is really tough, it probably takes something that can burn
     real well to melt this.
   count: 1

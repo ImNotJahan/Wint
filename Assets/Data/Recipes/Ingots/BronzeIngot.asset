@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76c18478bca9e241a2e00ed5198fea8, type: 3}
   m_Name: BronzeIngot
   m_EditorClassIdentifier: 
-  result: {fileID: 0}
-  ingredients: []
-  utility: 0
+  result: {fileID: 11400000, guid: f8a0bde6fc322f240b11c7cd0c802cc0, type: 2}
+  ingredients:
+  - {fileID: 11400000, guid: 721c35bcea28280488c5aa7f43865fb1, type: 2}
+  - {fileID: 11400000, guid: 063fb42c7f843b24b99dd4db9188660d, type: 2}
+  utility: 4

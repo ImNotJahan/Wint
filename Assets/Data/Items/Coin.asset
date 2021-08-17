@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 2599524521605237006, guid: c2642c646866432449b1a20d6a9546c7,
     type: 3}
-  item_id: Coin
+  itemName: Coin
   description: It's money.
   count: 1
   rarity: 1

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589abdffa5f157846b7d1510e42b8b06, type: 3}
   m_Name: Iron_Pickaxe
   m_EditorClassIdentifier: 
-  gameItem: {fileID: 0}
-  item_id: Iron Pickaxe
+  gameItem: {fileID: 5765041296431448657, guid: 963a98f9e7350f94f8aff7892e38de7f,
+    type: 3}
+  itemName: Iron Pickaxe
   description: Nice! You got an iron pickaxe. Now go get a better one.
   count: 1
   rarity: 0

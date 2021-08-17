@@ -13,7 +13,7 @@ public class PickableItem : MonoBehaviour
     private void Start()
     {
         gameItem = item.gameItem;
-        item_id = item.item_id;
+        item_id = item.itemName;
         description = item.description;
         count = item.count;
     }

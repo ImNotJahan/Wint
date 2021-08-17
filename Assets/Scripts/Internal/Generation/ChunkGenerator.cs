@@ -80,8 +80,9 @@ public class ChunkGenerator : MonoBehaviour
             meshObject.transform.position = positionV3;
             meshObject.transform.parent = parent;
 
-            chunk.GetComponent<MeshGenerator>().offset = new Vector2(position.x,
-                position.y);
+            chunk.GetComponent<MeshGenerator>().offset = new Vector2(position.x + 10000,
+                position.y + 10000); //adding those numbers are a temporary fix, until i can figure out why negative
+            //and positive offsets have differing seeds
             chunk.GetComponent<MeshGenerator>().Generate();
 
             SetVisible(false);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 5927623450849361819, guid: 4fe96e635a2c3ee48bd5869931a6f273,
     type: 3}
-  item_id: Bronze Pickaxe
+  itemName: Bronze Pickaxe
   description: If only we had some steam...
   count: 1
   rarity: 0

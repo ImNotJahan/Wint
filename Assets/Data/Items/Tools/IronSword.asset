@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76c18478bca9e241a2e00ed5198fea8, type: 3}
-  m_Name: OrichalcumIngot
+  m_Script: {fileID: 11500000, guid: 589abdffa5f157846b7d1510e42b8b06, type: 3}
+  m_Name: IronSword
   m_EditorClassIdentifier: 
-  result: {fileID: 11400000, guid: 671fd5e4c93a6854382c1f6ac52d3052, type: 2}
-  ingredients:
-  - {fileID: 11400000, guid: 86dc810b6ba360143bfa963238b018d3, type: 2}
-  utility: 1
+  gameItem: {fileID: 7771427464804316225, guid: 20bccfa2d3b465f448ef67e3084661e1,
+    type: 3}
+  itemName: Iron Sword
+  description: spord
+  count: 1
+  rarity: 0.1

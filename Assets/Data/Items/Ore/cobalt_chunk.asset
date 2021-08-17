@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 6723611686512885004, guid: d44f9fca9e1fe1d448f7d5803f67e2a6,
     type: 3}
-  item_id: Cobalt Chunk
+  itemName: Cobalt Chunk
   description: I really want to bite this.
   count: 1
   rarity: 0

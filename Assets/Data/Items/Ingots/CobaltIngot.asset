@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 4788808169085505104, guid: f4ea2004019203f4d93180327d4cd924,
     type: 3}
-  item_id: Cobalt Ingot
-  description: 
+  itemName: Cobalt Ingot
+  description: Even melted down it's still blue.
   count: 1
   rarity: 0

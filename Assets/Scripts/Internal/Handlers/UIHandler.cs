@@ -12,6 +12,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private Text questAppearedText = null;
 
     public int menuIndex = 0;
+    public static GameObject currentMenu = null; //This is so other menus can close one another when opening
 
     private void Start()
     {

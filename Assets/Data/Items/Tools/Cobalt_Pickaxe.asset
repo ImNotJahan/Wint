@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameItem: {fileID: 7881318885549822207, guid: 4aefbf912e2441349aac154f4312e1c2,
     type: 3}
-  item_id: Cobalt Pickaxe
+  itemName: Cobalt Pickaxe
   description: Aim for peoples heads to give their brain a colorful supprise.
   count: 1
   rarity: 0

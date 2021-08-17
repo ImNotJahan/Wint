@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76c18478bca9e241a2e00ed5198fea8, type: 3}
+  m_Name: OrichalcumPickaxe
+  m_EditorClassIdentifier: 
+  result: {fileID: 11400000, guid: 676bbc15fd4c23749ab9ad213033c95c, type: 2}
+  ingredients:
+  - {fileID: 11400000, guid: 4f848d4c018ba3a4580f449a0f35f2a2, type: 2}
+  - {fileID: 11400000, guid: 671fd5e4c93a6854382c1f6ac52d3052, type: 2}
+  - {fileID: 11400000, guid: 671fd5e4c93a6854382c1f6ac52d3052, type: 2}
+  utility: 2
