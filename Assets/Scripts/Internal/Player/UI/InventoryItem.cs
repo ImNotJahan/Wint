@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
@@ -13,6 +14,8 @@ public class InventoryItem : MonoBehaviour
     public string description = "";
     public int count = 1;
 
+    public UnityEvent onItemDrop = new UnityEvent();
+
     public void DisplayItem()
     {
         if (count != 1) invTitle.text = string.Format("{0} {1}x", title, count.ToString());
@@ -24,6 +27,8 @@ public class InventoryItem : MonoBehaviour
     {
         CharacterStats.currentPlayerInstance.characterCombat.myStats.inventory.Remove(itemSelf);
         Instantiate(itemPrefab);
+
+        onItemDrop.Invoke();
     }
 
     public void Equip()

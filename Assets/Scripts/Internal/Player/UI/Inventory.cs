@@ -27,56 +27,7 @@ public class Inventory : MonoBehaviour
         {
             if (!inventory.activeSelf)
             {
-                foreach (Transform item in invList)
-                {
-                    Destroy(item.gameObject);
-                }
-
-                Dictionary<string, int> invCache = new Dictionary<string, int>();
-
-                foreach (Item item in stats.inventory)
-                {
-                    if (invCache.ContainsKey(item.itemName)) invCache[item.itemName]++;
-                    else invCache[item.itemName] = 1;
-
-                    GameObject invItem = Instantiate(invPrefab, invList);
-                    invItem.transform.GetChild(0).GetComponent<Text>().text = item.itemName;
-
-                    string itemDescription = item.description;
-                    Weapon weapon = item.gameItem.GetComponent<Weapon>();
-
-                    if (item.gameItem.GetComponent<Weapon>() != null)
-                    {
-                        itemDescription += "\n";
-                        itemDescription += "Damage: " + weapon.baseDamage + "\n";
-                        itemDescription += "Variation: " + weapon.variation + "\n";
-                        itemDescription += "Attack speed: " + weapon.attackSpeed + "\n";
-
-                        equip.gameObject.SetActive(true);
-                    } else equip.gameObject.SetActive(false);
-
-                    InventoryItem invItemComponent = invItem.GetComponent<InventoryItem>();
-                    invItemComponent.title = item.itemName;
-                    invItemComponent.description = itemDescription;
-                    invItemComponent.count = invCache[item.itemName];
-
-                    invItemComponent.itemPrefab = item.gameItem;
-                    invItemComponent.itemSelf = item;
-
-                    invItemComponent.invTitle = title;
-                    invItemComponent.invDescription = description;
-
-                    drop.GetComponent<Button>().onClick.RemoveAllListeners();
-                    equip.GetComponent<Button>().onClick.RemoveAllListeners();
-
-                    drop.GetComponent<Button>().onClick.AddListener(invItemComponent.Drop);
-                    equip.GetComponent<Button>().onClick.AddListener(invItemComponent.Equip);
-
-                    invItem.GetComponent<Button>().onClick.AddListener(invItemComponent.DisplayItem);
-                }
-
-                title.text = "";
-                description.text = "";
+                RefreshInv();
             }
 
             inventory.SetActive(!inventory.activeSelf);
@@ -86,5 +37,62 @@ public class Inventory : MonoBehaviour
             Cursor.lockState = inventory.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = inventory.activeSelf;
         }
+    }
+
+    private void RefreshInv()
+    {
+        foreach (Transform item in invList)
+        {
+            Destroy(item.gameObject);
+        }
+
+        Dictionary<string, int> invCache = new Dictionary<string, int>();
+
+        foreach (Item item in stats.inventory)
+        {
+            if (invCache.ContainsKey(item.itemName)) invCache[item.itemName]++;
+            else invCache[item.itemName] = 1;
+
+            GameObject invItem = Instantiate(invPrefab, invList);
+            invItem.transform.GetChild(0).GetComponent<Text>().text = item.itemName;
+
+            string itemDescription = item.description;
+            Weapon weapon = item.gameItem.GetComponent<Weapon>();
+
+            if (item.gameItem.GetComponent<Weapon>() != null)
+            {
+                itemDescription += "\n";
+                itemDescription += "Damage: " + weapon.baseDamage + "\n";
+                itemDescription += "Variation: " + weapon.variation + "\n";
+                itemDescription += "Attack speed: " + weapon.attackSpeed + "\n";
+
+                equip.gameObject.SetActive(true);
+            }
+            else equip.gameObject.SetActive(false);
+
+            InventoryItem invItemComponent = invItem.GetComponent<InventoryItem>();
+            invItemComponent.title = item.itemName;
+            invItemComponent.description = itemDescription;
+            invItemComponent.count = invCache[item.itemName];
+
+            invItemComponent.itemPrefab = item.gameItem;
+            invItemComponent.itemSelf = item;
+
+            invItemComponent.invTitle = title;
+            invItemComponent.invDescription = description;
+
+            drop.GetComponent<Button>().onClick.RemoveAllListeners();
+            equip.GetComponent<Button>().onClick.RemoveAllListeners();
+
+            drop.GetComponent<Button>().onClick.AddListener(invItemComponent.Drop);
+            equip.GetComponent<Button>().onClick.AddListener(invItemComponent.Equip);
+
+            invItemComponent.onItemDrop.AddListener(RefreshInv);
+
+            invItem.GetComponent<Button>().onClick.AddListener(invItemComponent.DisplayItem);
+        }
+
+        title.text = "";
+        description.text = "";
     }
 }

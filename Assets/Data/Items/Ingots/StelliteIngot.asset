@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589abdffa5f157846b7d1510e42b8b06, type: 3}
   m_Name: StelliteIngot
   m_EditorClassIdentifier: 
-  gameItem: {fileID: 0}
+  gameItem: {fileID: 4873001050783266408, guid: dbc1c5a6f37ced94786997e41ed9e690,
+    type: 3}
   itemName: Stellite Ingot
   description: Doesn't make the best equipment, but lasts for a looooonnnnnnggggggg
     time.
