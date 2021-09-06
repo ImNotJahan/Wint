@@ -84,7 +84,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _TessellationUniform: 4.02
+    - _TessellationUniform: 10
     - _Width: 0.1
     - _WindStrength: 0.19
     - _WorkflowMode: 1

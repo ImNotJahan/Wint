@@ -86,6 +86,7 @@ float _Height;
 float _RandomHeight;
 float _WindStrength;
 float _TessellationUniform; // Used in CustomTesellation.hlsl
+sampler2D _TessellationMap;
 CBUFFER_END
 
 // Vertex, Geometry & Fragment Shaders
@@ -105,6 +106,7 @@ Varyings vert(Attributes input)
 
 	output.normal = TransformObjectToWorldNormal(input.normal);
 	output.tangent = input.tangent;
+
 	// or maybe
 	// output.tangent = float4(TransformObjectToWorldNormal(input.tangent.xyz), input.tangent.w);
 	// doesn't seem to make much of a difference though

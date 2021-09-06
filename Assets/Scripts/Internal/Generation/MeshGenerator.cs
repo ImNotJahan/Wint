@@ -33,6 +33,11 @@ public class MeshGenerator : MonoBehaviour
 
     public PlaceableObject[] objects;
 
+    private void Start()
+    {
+        Generate(false);
+    }
+
     private Mesh GenerateMeshOnly(float[,] heightMap)
     {
         float[,] moistureMap = Unflatten(Noise.Generate(size + 1, seed + 3, biomeScale, biomeOctaves, persistance, lacunarity, offset));
@@ -206,6 +211,15 @@ public class MeshGenerator : MonoBehaviour
         Mesh mesh = GenerateMeshOnly(heightMap);
         GetComponent<MeshFilter>().sharedMesh = mesh;
         GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
+
+        Texture2D texture = new Texture2D(size, size);
+        texture.SetPixels(mesh.colors);
+
+        texture.filterMode = FilterMode.Point;
+        texture.wrapMode = TextureWrapMode.Clamp;
+        texture.Apply();
+
+        GetComponent<Renderer>().materials[1].SetTexture("_TessellationMap", texture);
 
         if(withCollider) GetComponent<MeshCollider>().sharedMesh = GenerateCollider(heightMap);
     }

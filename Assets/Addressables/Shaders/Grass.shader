@@ -9,6 +9,7 @@
 			_RandomHeight("Random Height", Float) = 0.1
 			_WindStrength("Wind Strength", Float) = 0.1
 			_TessellationUniform("Tessellation Uniform", Range(1, 10)) = 1
+			_TessellationMap("Tessellation Map", 2D) = "bump"
 		// Note, _TessellationUniform can go higher, but the material preview window causes it to be very laggy.
 		// I'd probably just use a manually subdivided plane mesh if higher tessellations are needed.
 		// Also, tessellation is uniform across entire plane. Might be good to look into tessellation based on camera distance.

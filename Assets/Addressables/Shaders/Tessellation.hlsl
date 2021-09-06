@@ -16,10 +16,16 @@ struct TessellationFactors
 TessellationFactors patchConstantFunction(InputPatch<Varyings, 3> patch)
 {
 	TessellationFactors f;
-	f.edge[0] = _TessellationUniform;
-	f.edge[1] = _TessellationUniform;
-	f.edge[2] = _TessellationUniform;
-	f.inside = _TessellationUniform;
+
+	float2 uv = patch[0].texcoord;
+	float factor = tex2Dlod(_TessellationMap, float4(uv, 0, 0)).r;
+
+	float value = lerp(0, 10.0, factor);
+
+	f.edge[0] = value;
+	f.edge[1] = value;
+	f.edge[2] = value;
+	f.inside = value;
 	return f;
 }
 
