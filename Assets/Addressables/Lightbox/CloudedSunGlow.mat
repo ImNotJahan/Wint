@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CloudedSunGlow
-  m_Shader: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 06c5961cd45b62a4b85535aad8c82e87,
+    type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -79,11 +80,20 @@ Material:
         m_Texture: {fileID: 8900000, guid: 12c15a8e5a294be45819b1dd4b9b08d3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_670CAC53_Out_0:
+        m_Texture: {fileID: 2800000, guid: 7fe0477cbaeb6104f84c3de7c24e8e28, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _UpTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_7F5A9AF2: 0
+    - Vector1_D54D233C: 15
+    - Vector1_DABEB19F: 25
+    - Vector1_DD7E991B: 2
+    - Vector1_F9C3F0E3: 0.1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -103,6 +113,9 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_3769823E: {r: 0.6792453, g: 0.2252335, b: 0.08650766, a: 0}
+    - Color_83814F43: {r: 0.3962264, g: 0, b: 0.156, a: 0}
+    - Vector3_B51DB75: {r: 0.5, g: 0.5, b: -0.5, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
