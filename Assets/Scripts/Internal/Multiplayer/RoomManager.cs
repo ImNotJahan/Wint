@@ -30,7 +30,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         if (!PhotonNetwork.InRoom)
         {
-            GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+            GameObject player = Instantiate(playerPrefab, new Vector3(0, 5, 0), Quaternion.identity);
             player.GetComponent<PlayerManager>().cooldownBar = cooldownBar;
             ChunkGenerator.viewer = player.transform.GetChild(0);
         }

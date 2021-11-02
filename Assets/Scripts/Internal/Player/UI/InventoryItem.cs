@@ -26,6 +26,13 @@ public class InventoryItem : MonoBehaviour
     public void Drop()
     {
         CharacterStats.currentPlayerInstance.characterCombat.myStats.inventory.Remove(itemSelf);
+
+        PickableItem possiblyHeldObject;
+        if (itemSelf.gameItem.TryGetComponent(out possiblyHeldObject) && possiblyHeldObject != null && possiblyHeldObject.held)
+        {
+            Destroy(possiblyHeldObject.gameObject);
+        }
+
         Instantiate(itemPrefab);
 
         onItemDrop.Invoke();

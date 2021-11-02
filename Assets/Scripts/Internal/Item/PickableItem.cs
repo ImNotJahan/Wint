@@ -18,7 +18,7 @@ public class PickableItem : MonoBehaviour
         count = item.count;
     }
 
-    protected bool held = false;
+    public bool held = false;
 
     public void OnTriggerStay(Collider collider)
     {

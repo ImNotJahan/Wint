@@ -61,7 +61,7 @@ public class Interact : MonoBehaviour
         if (Input.GetKeyUp(IniFiles.Keybinds.interact))
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5))
             {
                 transform.GetComponent<Interact>().ProcessInteract(hit.transform);
             }

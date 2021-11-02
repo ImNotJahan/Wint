@@ -22,19 +22,21 @@ public class Weapon : PickableItem
 
     public override void PickUp(Collider collider)
     {
-        Transform equipped = collider.GetComponent<CharacterCombat>().equipped;
-        if(equipped.GetChild(0) != gameObject)
+        Transform equipped = collider.transform.Find("equipped");
+        if(equipped.childCount > 0 && !equipped.GetChild(0).Equals(gameObject))
         {
             collider.GetComponent<CharacterCombat>().myStats.inventory.Add(item);
 
-            if (equipped.childCount == 0)
-            {
-                held = true;
-                collider.GetComponent<CharacterCombat>().myStats.equipedWeapon = weaponId;
-                transform.parent = equipped;
-                transform.rotation.Set(90, 0, 0, 0);
-                transform.localPosition = Vector3.zero;
-            }
+            Destroy(gameObject);
+        } else if (equipped.childCount == 0)
+        {
+            collider.GetComponent<CharacterCombat>().myStats.inventory.Add(item);
+
+            held = true;
+            collider.GetComponent<CharacterCombat>().myStats.equipedWeapon = weaponId;
+            transform.parent = equipped;
+            transform.rotation.Set(90, 0, 0, 0);
+            transform.localPosition = Vector3.zero;
         }
     }
 
