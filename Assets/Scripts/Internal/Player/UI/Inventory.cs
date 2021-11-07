@@ -25,18 +25,23 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyUp(IniFiles.Keybinds.inventory))
         {
-            if (!inventory.activeSelf)
-            {
-                RefreshInv();
-            }
-
-            inventory.SetActive(!inventory.activeSelf);
-
-            MouseLook.disabled = inventory.activeSelf;
-
-            Cursor.lockState = inventory.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = inventory.activeSelf;
+            ToggleInventory();
         }
+    }
+
+    public void ToggleInventory()
+    {
+        if (!inventory.activeSelf)
+        {
+            RefreshInv();
+        }
+
+        inventory.SetActive(!inventory.activeSelf);
+
+        MouseLook.disabled = inventory.activeSelf;
+
+        Cursor.lockState = inventory.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = inventory.activeSelf;
     }
 
     private void RefreshInv()

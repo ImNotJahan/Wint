@@ -33,6 +33,17 @@ namespace Crafting
             Interact.crucibleInteractedWith.AddListener(() => { OpenCrafting(Utility.Crucible); });
         }
 
+        public void ToggleCrafting()
+        {
+
+            inventory.SetActive(!inventory.activeSelf);
+
+            MouseLook.disabled = inventory.activeSelf;
+
+            Cursor.lockState = inventory.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = inventory.activeSelf;
+        }
+
         public void OpenCrafting(Utility utility)
         {
             if (!inventory.activeSelf)
@@ -68,12 +79,7 @@ namespace Crafting
                 title.text = "";
             }
 
-            inventory.SetActive(!inventory.activeSelf);
-
-            MouseLook.disabled = inventory.activeSelf;
-
-            Cursor.lockState = inventory.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = inventory.activeSelf;
+            ToggleCrafting();
         }
 
         private void Update()
