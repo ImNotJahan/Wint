@@ -39,6 +39,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         if(!string.IsNullOrEmpty(tempUsernameInput.text)) PhotonNetwork.NickName = tempUsernameInput.text;
     }
 
+    public void SetUsername(string username)
+    {
+        PhotonNetwork.NickName = username;
+    }
+
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
