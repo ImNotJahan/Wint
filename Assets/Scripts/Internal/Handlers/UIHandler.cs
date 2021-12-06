@@ -92,6 +92,12 @@ public class UIHandler : MonoBehaviour
     private void closeMessage()
     {
         dialogBox.SetActive(false);
+
+        foreach(GameObject button in dialogButtons)
+        {
+            button.SetActive(false);
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;

@@ -4,7 +4,7 @@ using static MultidimensionalArray;
 public class NPCBase : MonoBehaviour
 {
     public string npcName;
-    [SerializeField] private UIHandler uihandler = null;
+    [SerializeField] protected UIHandler uihandler = null;
 
     public Transform head;
 

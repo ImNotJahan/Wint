@@ -53,7 +53,9 @@ public class Interact : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 0;
 
-        uihandler.displayMessage(npc.dialogs[0], npc.name, npc.responses[0], npc.HandleClick, npc, 1);
+        UnityAction call = (npc is Shopkeeper) ? (UnityAction) ((Shopkeeper) npc).HandleClick : npc.HandleClick;
+
+        uihandler.displayMessage(npc.dialogs[0], npc.name, npc.responses[0], call, npc, 1);
     }
 
     private void Update()
