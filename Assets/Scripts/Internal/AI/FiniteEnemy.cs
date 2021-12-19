@@ -1,48 +1,58 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(CharacterController))]
 public class FiniteEnemy : MonoBehaviour
 {
+    [SerializeField] private CharacterStats stats = new CharacterStats();
+
     private Animator animator;
 
     private Ray ray;
     private RaycastHit hit;
     private AnimatorStateInfo info;
-    private string objectInSite;
 
-    private CharacterController controller;
+    private NavMeshAgent agent;
+
+    private float distance;
 
     // For dot product of view
-    public Vector3 direction;
-    public bool inFOV; // FOV = Field of View
-    public bool objectBetweenTargetAndSelf = true;
+    private Vector3 direction;
+    private bool inFOV; // FOV = Field of View
+    private bool objectBetweenTargetAndSelf = true;
 
-    [SerializeField] private float speed = 1;
     [SerializeField] private Transform head = null;
 
     private Transform target;
 
-    void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
-        controller = GetComponent<CharacterController>();
-        target = PlayerMovementScript.instance.gameObject.transform;
+        agent = GetComponent<NavMeshAgent>();
+
+        stats.onTakeDamage.AddListener(Hit);
     }
 
-    void Update()
+    private void Update()
     {
-        direction = (target.position - transform.position).normalized;
-        inFOV = Vector3.Dot(transform.forward.normalized, direction) > .7f;
+        target = PlayerMovementScript.instance.transform;
 
-        Debug.DrawRay(transform.position, direction * 100, Color.red);
-        Debug.DrawRay(transform.position, transform.forward * 100, Color.red);
+        info = animator.GetCurrentAnimatorStateInfo(0);
+        
+        direction = (target.position - head.position).normalized;
+        inFOV = Vector3.Dot(head.forward.normalized, direction) > .7f;
 
-        if(Physics.Raycast(transform.position, direction * 100, out hit))
+        Debug.DrawRay(head.position, direction * 100, Color.red);
+        Debug.DrawRay(head.position, head.forward * 100, Color.red);
+
+        if(Physics.Raycast(head.position, direction * 100, out hit))
         {
             if (hit.collider.gameObject.tag == "Player") objectBetweenTargetAndSelf = false;
             else objectBetweenTargetAndSelf = true;
         }
+
+        distance = Vector3.Distance(transform.position, target.position);
+        animator.SetBool("withinReach", distance < 3f && inFOV);
 
         if (!objectBetweenTargetAndSelf && inFOV)
         {
@@ -54,9 +64,19 @@ public class FiniteEnemy : MonoBehaviour
 
         if (info.IsName("CHASE"))
         {
-            
-            if (objectInSite != "Player") animator.SetBool("canSeePlayer", false);
-            else controller.SimpleMove(Vector3.forward * Time.deltaTime * speed); //transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            if (!inFOV) animator.SetBool("canSeePlayer", false);
+            else
+            {
+                agent.destination = target.position;
+                agent.isStopped = false;
+            }
         }
+        else if (info.IsName("IDLE")) agent.isStopped = true;
+        else if (info.IsName("SLAM")) agent.isStopped = true;
+    }
+
+    void Hit(string[] args)
+    {
+        animator.SetTrigger("hit");
     }
 }

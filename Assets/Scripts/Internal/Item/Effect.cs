@@ -9,7 +9,6 @@ public class Effect : PickableItem
     {
         CharacterStats stats = collider.GetComponent<CharacterCombat>().myStats;
         stats.inventory.Add(item);
-        stats.health += healing;
 
         held = true;
         Destroy(gameObject);

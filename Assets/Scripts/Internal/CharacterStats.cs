@@ -36,6 +36,7 @@ public class CharacterStats
     public bool dropItemsOnDeath = false;
     public bool isMonster = true;
 
+    /** Calculates how much damage an attack from this entity would deal **/
     public int AttackPower()
     {
         if (weapon != null)
@@ -50,11 +51,13 @@ public class CharacterStats
 
     public void TakeDamage(int damage)
     {
-        damage += UnityEngine.Random.Range(-3, 3);
-        health -= Mathf.Max(damage - defense, 1);
+        damage += UnityEngine.Random.Range(-3, 3); // Add some variation
+        health -= Mathf.Max(damage - defense, 1); // Makes sure you don't get healed from weak attacks
 
+        // Checking for death
         if (health < 1)
         {
+            // Monsters and players handle death differently
             if (isMonster) characterCombat.die();
             else movementScript.die();
         }
@@ -62,11 +65,19 @@ public class CharacterStats
         onTakeDamage.Invoke(new string[] { });
     }
 
+    public void Heal(int hp)
+    {
+        hp += UnityEngine.Random.Range(-3, 3); // Add a little variation to the healing
+        health = Mathf.Min(health + hp, maxHealth); // Makes sure that the players health doesn't go over 
+    }
+
+    /** Returns the entityId **/
     public override string ToString()
     {
         return entityId;
     }
 
+    /** Saves all stats into a json **/
     public void Save()
     {
         if (!Directory.Exists(directorypath))
@@ -78,6 +89,7 @@ public class CharacterStats
         File.WriteAllText(directorypath + "Save0.json", data);
     }
 
+    /** Loads all stats from a json **/
     public void Load()
     {
         string data = File.ReadAllText(directorypath + "Save0.json");
